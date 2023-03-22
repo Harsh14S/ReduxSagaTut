@@ -1,11 +1,15 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
+import { Provider } from 'react-redux'
+import Store from './SRC/Redux/Store'
+import Nav from './SRC/Components/Nav'
 
 const App = () => {
+
   return (
-    <SafeAreaView>
-      <Text>App</Text>
-    </SafeAreaView>
+    <Provider store={Store}>
+      <Nav />
+    </Provider>
   )
 }
 
