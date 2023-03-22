@@ -1,11 +1,11 @@
-import { PRODUCT_LIST } from '../Actions/Constant'
+import { PRODUCT_LIST, SET_PRODUCT_LIST } from '../Actions/Constant'
 
 
 export default ProductData = (state = [], action) => {
   switch (action.type) {
-    case PRODUCT_LIST:
-      console.log("Action: ", action);
-      return [action.state]
+    case SET_PRODUCT_LIST:
+      // console.log("Action: ", action);
+      return [...action.payload]
     default:
       return state;
   }

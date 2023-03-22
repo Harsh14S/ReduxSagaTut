@@ -4,12 +4,15 @@ export default CartData = (state = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
       console.log("Added to cart");
-      return [action.payload, ...state];
+      return [...state, action.payload];
 
     case REMOVE_FROM_CART:
       console.log("Removed from cart");
-      state.length >= 1 ? state.length = state.length - 1 : [];
-      return [...state];
+      // state.length >= 1 ? state.length = state.length - 1 : [];
+      const remainingItem = state.filter((item) => item.id !== action.payload);
+      // console.log("Remaining Item: ", remainingItem);
+
+      return [...remainingItem];
 
     case EMPTY_CART:
       state = [];

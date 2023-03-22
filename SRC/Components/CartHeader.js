@@ -1,34 +1,32 @@
 import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useDebugValue, useState } from 'react'
+import React from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch, useSelector } from 'react-redux'
 import { emptyCart } from '../Redux/Actions/Action'
 
-export default HomeHeader = ({ navigation }) => {
+export default CartHeader = ({ navigation }) => {
   const CartData = useSelector((state) => state.CartData);
+  console.log("Cart: ", CartData);
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Pressable
         style={styles.left}
-        onPress={() => dispatch(emptyCart())}
+        onPress={() => navigation.navigate('Home')}
       >
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/471/471715.png' }} style={styles.cartImg} resizeMode={'contain'} />
+        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/318/318477.png' }} style={styles.cartImg} resizeMode={'contain'} />
       </Pressable>
       <Pressable style={styles.mid}>
-        <Text style={styles.headingTxt}>Products</Text>
+        <Text style={styles.headingTxt}>Cart</Text>
       </Pressable>
-      <Pressable style={styles.right} onPress={() => navigation.navigate('Cart')}>
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/4297/4297127.png' }} style={styles.cartImg} resizeMode={'contain'} />
-        {
-          CartData.length > 0 ?
-            (<View style={styles.itemIndicatorView}>
-              <Text style={styles.itemIndicator}>{CartData.length}</Text>
-            </View>) : null}
+      <Pressable style={styles.right} onPress={() => dispatch(emptyCart())} >
+        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/484/484611.png' }} style={styles.cartImg} resizeMode={'contain'} />
       </Pressable>
     </View>
   )
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -59,8 +57,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: RFPercentage(1),
   },
   cartImg: {
-    height: RFPercentage(5),
-    width: RFPercentage(5),
+    height: RFPercentage(3.5),
+    width: RFPercentage(3.5),
     tintColor: 'black',
   },
   itemIndicatorView: {

@@ -1,13 +1,14 @@
 import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, emptyCart, removeFromCart } from '../Redux/Actions/Action';
+import { removeFromCart } from '../Redux/Actions/Action';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { productList } from '../Redux/Actions/ProductAction';
-import HomeHeader from './HomeHeader';
+import CartHeader from './CartHeader';
 
-const Home = ({ navigation }) => {
-  const ProductData = useSelector((state) => state.ProductData);
+export default Cart = ({ navigation }) => {
+
+  const CartData = useSelector((state) => state.CartData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,10 +16,9 @@ const Home = ({ navigation }) => {
   }, []);
   return (
     <View style={styles.container}>
-      <HomeHeader navigation={navigation} />
-
+      <CartHeader navigation={navigation} />
       <FlatList
-        data={ProductData}
+        data={CartData}
         renderItem={({ item, index }) => (
           <View key={index} style={{ margin: RFPercentage(1) }}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
@@ -38,12 +38,6 @@ const Home = ({ navigation }) => {
             <View style={styles.btnContainers}>
               <Pressable
                 style={styles.btn}
-                onPress={() => dispatch(addToCart(item))}
-              >
-                <Text style={styles.btnTxt}>Add To Cart</Text>
-              </Pressable>
-              <Pressable
-                style={styles.btn}
                 onPress={() => dispatch(removeFromCart(item.id))}
               >
                 <Text style={styles.btnTxt}>Remove From Cart</Text>
@@ -56,7 +50,7 @@ const Home = ({ navigation }) => {
   )
 }
 
-export default Home
+
 
 const styles = StyleSheet.create({
   container: {
