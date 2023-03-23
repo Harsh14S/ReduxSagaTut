@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
         data={ProductData}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <View key={index} style={{ margin: RFPercentage(1) }}>
+          <View key={index} style={{ marginHorizontal: RFPercentage(1), marginBottom: RFPercentage(1) }}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
               <View style={styles.detailsContainer}>
                 <Text>Product: {item.title}</Text>
