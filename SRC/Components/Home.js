@@ -5,6 +5,8 @@ import { addToCart, emptyCart, removeFromCart } from '../Redux/Actions/Action';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { productList } from '../Redux/Actions/ProductAction';
 import HomeHeader from './HomeHeader';
+import { SearchBar } from 'react-native-screens';
+import HomeSearchBar from './HomeSearchBar';
 
 const Home = ({ navigation }) => {
   const ProductData = useSelector((state) => state.ProductData);
@@ -16,9 +18,11 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <HomeHeader navigation={navigation} />
+      <HomeSearchBar />
 
       <FlatList
         data={ProductData}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <View key={index} style={{ margin: RFPercentage(1) }}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Dimensions.get('screen').width,
-    marginVertical: RFPercentage(5)
+    backgroundColor: 'white'
   },
   btnContainers: {
     // flex: 1,

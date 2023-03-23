@@ -5,6 +5,7 @@ import { removeFromCart } from '../Redux/Actions/Action';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { productList } from '../Redux/Actions/ProductAction';
 import CartHeader from './CartHeader';
+import CartBillComponent from './CartBillComponent';
 
 export default Cart = ({ navigation }) => {
 
@@ -17,6 +18,7 @@ export default Cart = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CartHeader navigation={navigation} />
+      <CartBillComponent />
       <FlatList
         data={CartData}
         renderItem={({ item, index }) => (
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Dimensions.get('screen').width,
-    marginVertical: RFPercentage(5)
+    backgroundColor: 'white',
   },
   btnContainers: {
     // flex: 1,
