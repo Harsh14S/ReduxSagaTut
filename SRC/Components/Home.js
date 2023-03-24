@@ -24,8 +24,6 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <HomeHeader navigation={navigation} />
-      <HomeSearchBar />
-
       <FlatList
         data={data}
         showsVerticalScrollIndicator={false}

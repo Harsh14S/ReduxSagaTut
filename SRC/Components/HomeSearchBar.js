@@ -21,29 +21,34 @@ export default HomeSearchBar = () => {
           }}
         />
       </View>
-      <Pressable style={styles.iconContainer}
+      <Pressable style={styles.crossContainer}
         onPress={() => { dispatch(GetProductAction(searchTxt)) }}
         onPressIn={() => setStyle(styles.searchIconColor)}
 
         onPressOut={() => setStyle(styles.searchIcon)}
       >
-        <Image style={[styles.searchIcon, style]} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3686/3686896.png' }} />
+        <Image style={[styles.searchIcon, style]} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3416/3416079.png' }} />
       </Pressable>
-      {/* <Button title='Clear' onPress={() => { setSearchTxt(''), dispatch(GetProductAction()) }} /> */}
+      {/* <Button title='Clear' onPress={() => dispatch(GetProductAction(searchTxt))} /> */}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: RFPercentage(1.5),
+    flex: 1,
+    marginLeft: RFPercentage(1.5),
+    // padding: RFPercentage(0.2),
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: 'lightgrey',
+    borderRadius: RFPercentage(5),
+    overflow: 'hidden',
+    paddingVertical: RFPercentage(0.6)
   },
   searchBarContainer: {
     flex: 1,
     backgroundColor: 'lightgrey',
-    borderRadius: RFPercentage(1.5),
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -54,16 +59,15 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(2.5),
   },
   searchIcon: {
-    height: RFPercentage(5),
-    width: RFPercentage(5),
+    height: RFPercentage(4),
+    width: RFPercentage(4),
     tintColor: 'black',
   },
   searchIconColor: {
-    tintColor: 'lightgrey',
+    opacity: 0.5,
   },
-  iconContainer: {
-    marginLeft: RFPercentage(1),
+  crossContainer: {
+    marginHorizontal: RFPercentage(0.7),
     borderRadius: RFPercentage(100),
-
   },
 })
