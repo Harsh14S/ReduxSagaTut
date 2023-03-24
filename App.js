@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import Store from './SRC/Redux/Store'
 import Nav from './SRC/Components/Nav'
 
-const App = () => {
 
+const App = () => {
   return (
     <Provider store={Store}>
       <Nav />

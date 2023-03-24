@@ -1,27 +1,33 @@
 import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, emptyCart, removeFromCart } from '../Redux/Actions/Action';
+import { addToCart, removeFromCart } from '../Redux/Actions/Action';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import { productList } from '../Redux/Actions/ProductAction';
 import HomeHeader from './HomeHeader';
-import { SearchBar } from 'react-native-screens';
 import HomeSearchBar from './HomeSearchBar';
+import { GetProductAction } from '../Redux/Actions/GetProductAction';
 
 const Home = ({ navigation }) => {
-  const ProductData = useSelector((state) => state.ProductData);
+  const [data, setData] = useState('');
   const dispatch = useDispatch();
+  const getProductData = useSelector((state) => state.GetProduct);
 
   useEffect(() => {
-    dispatch(productList());
+    dispatch(GetProductAction());
   }, []);
+
+  useEffect(() => {
+    const Product = getProductData && getProductData.data && getProductData.data[0];
+    setData(Product)
+    // console.log('product', Product);
+  }, [getProductData])  // dependency is compulsory so that data is rendered properly after getting on this page (getProductData)
   return (
     <View style={styles.container}>
       <HomeHeader navigation={navigation} />
       <HomeSearchBar />
 
       <FlatList
-        data={ProductData}
+        data={data}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <View key={index} style={{ marginHorizontal: RFPercentage(1), marginBottom: RFPercentage(1) }}>
@@ -107,52 +113,5 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: RFPercentage(0.5),
     justifyContent: 'space-evenly',
-  }
-})
-
-const headerStyles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    // backgroundColor: 'gold',
-    alignItems: 'center',
-    padding: RFPercentage(1),
-    // justifyContent: 'space-evenly',
-  },
-  left: {
-    paddingHorizontal: RFPercentage(1),
-  },
-  btnTxt: {
-    fontSize: RFPercentage(1.6),
-    color: 'white',
-    fontWeight: '700',
-  },
-  mid: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  headingTxt: {
-    fontSize: RFPercentage(2.5),
-    fontWeight: '700',
-  },
-  right: {
-    paddingHorizontal: RFPercentage(1),
-  },
-  cartImg: {
-    height: RFPercentage(4),
-    width: RFPercentage(4),
-    tintColor: 'black',
-  },
-  itemIndicatorView: {
-    width: RFPercentage(3),
-    alignItems: 'center',
-    position: 'absolute',
-    right: 0,
-    backgroundColor: 'darkgreen',
-    borderRadius: RFPercentage(100),
-    padding: RFPercentage(0.6),
-  },
-  itemIndicator: {
-    color: 'white',
-    fontSize: RFPercentage(1.4)
   }
 })

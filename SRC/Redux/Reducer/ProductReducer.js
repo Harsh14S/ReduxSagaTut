@@ -1,4 +1,4 @@
-import { PRODUCT_LIST, SET_PRODUCT_LIST } from '../Actions/Constant'
+import { SET_PRODUCT_LIST } from '../Actions/Constant'
 
 
 export default ProductData = (state = [], action) => {

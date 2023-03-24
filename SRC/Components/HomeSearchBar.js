@@ -1,8 +1,8 @@
-import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch } from 'react-redux'
-import { searchProduct } from '../Redux/Actions/ProductAction'
+import { GetProductAction } from '../Redux/Actions/GetProductAction'
 
 export default HomeSearchBar = () => {
   const dispatch = useDispatch();
@@ -10,18 +10,26 @@ export default HomeSearchBar = () => {
   const [style, setStyle] = useState();
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder='Search'
-        style={styles.searchBar}
-        onChangeText={(text) => setSearchTxt(text)}
-      />
+      <View style={styles.searchBarContainer}>
+        <TextInput
+          placeholder='Search'
+          style={styles.searchBar}
+          value={searchTxt}
+          onChangeText={(text) => {
+            if (text === '') { setSearchTxt(text), dispatch(GetProductAction(text)) }
+            else setSearchTxt(text)
+          }}
+        />
+      </View>
       <Pressable style={styles.iconContainer}
-        onPress={() => dispatch(searchProduct(searchTxt))}
+        onPress={() => { dispatch(GetProductAction(searchTxt)) }}
         onPressIn={() => setStyle(styles.searchIconColor)}
+
         onPressOut={() => setStyle(styles.searchIcon)}
       >
         <Image style={[styles.searchIcon, style]} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3686/3686896.png' }} />
       </Pressable>
+      {/* <Button title='Clear' onPress={() => { setSearchTxt(''), dispatch(GetProductAction()) }} /> */}
     </View>
   )
 }
@@ -29,17 +37,21 @@ export default HomeSearchBar = () => {
 const styles = StyleSheet.create({
   container: {
     padding: RFPercentage(1.5),
-    // marginHorizontal: RFPercentage(1),
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  searchBarContainer: {
+    flex: 1,
+    backgroundColor: 'lightgrey',
+    borderRadius: RFPercentage(1.5),
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   searchBar: {
     flex: 1,
-    backgroundColor: 'lightgrey',
     paddingHorizontal: RFPercentage(2.5),
-    borderRadius: RFPercentage(1.5),
     color: 'black',
-    fontSize: RFPercentage(2.5)
+    fontSize: RFPercentage(2.5),
   },
   searchIcon: {
     height: RFPercentage(5),
@@ -52,5 +64,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginLeft: RFPercentage(1),
     borderRadius: RFPercentage(100),
-  }
+
+  },
 })
