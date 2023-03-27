@@ -4,13 +4,13 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useSelector } from 'react-redux'
 
 const CartBillComponent = () => {
+
   const CartData = useSelector((state) => state.CartData);
   const amount = CartData.length && CartData.map(item => item.price).reduce((prev, next) => prev + next);
   const tax = parseInt(amount / 100 * 18);
   const discount = parseInt(amount / 100 * 5);
   const total = amount - discount + tax;
 
-  console.log("Amount: ", amount);
   return (
     <View style={styles.container}>
       <View style={styles.billBox}>

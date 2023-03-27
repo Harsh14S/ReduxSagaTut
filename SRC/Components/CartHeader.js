@@ -6,7 +6,6 @@ import { emptyCart } from '../Redux/Actions/Action'
 
 export default CartHeader = ({ navigation }) => {
   const CartData = useSelector((state) => state.CartData);
-  console.log("Cart: ", CartData);
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>

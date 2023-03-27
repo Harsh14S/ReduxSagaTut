@@ -13,8 +13,6 @@ export function* GetProductAsync({ params }) {
   }
 }
 
-export function* GetProductSaga() {
+export default function* GetProductSaga() {
   yield takeEvery(GET_PRODUCT_LIST_REQUEST, GetProductAsync);
 }
-
-export default GetProductSaga;

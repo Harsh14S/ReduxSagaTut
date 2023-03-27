@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../Redux/Actions/Action';
@@ -16,7 +16,7 @@ export default Cart = ({ navigation }) => {
     dispatch(productList());
   }, []);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <CartHeader navigation={navigation} />
       <CartBillComponent />
       <FlatList
@@ -48,7 +48,7 @@ export default Cart = ({ navigation }) => {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

@@ -1,10 +1,9 @@
-import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../Redux/Actions/Action';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import HomeHeader from './HomeHeader';
-import HomeSearchBar from './HomeSearchBar';
 import { GetProductAction } from '../Redux/Actions/GetProductAction';
 
 const Home = ({ navigation }) => {
@@ -22,7 +21,8 @@ const Home = ({ navigation }) => {
     // console.log('product', Product);
   }, [getProductData])  // dependency is compulsory so that data is rendered properly after getting on this page (getProductData)
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'dark-content'} />
       <HomeHeader navigation={navigation} />
       <FlatList
         data={data}
@@ -60,7 +60,7 @@ const Home = ({ navigation }) => {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Dimensions.get('screen').width,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   btnContainers: {
     // flex: 1,
