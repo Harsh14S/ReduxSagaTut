@@ -10,20 +10,20 @@ import { SignupAction } from '../Redux/Actions/SignupAction'
 export default SignUp = ({ navigation }) => {
   const dispatch = useDispatch();
   const SignupData = useSelector(state => state.SignUp)
-  console.log("SignupData: ", SignupData);
+  // console.log("SignupData: ", SignupData);
   const [email, setEmail] = useState('janet.weaver@reqres.in');
   const [password, setPassword] = useState('pistasdaasdol');
   const [newPassword, setNewPassword] = useState('pistasdaasdol');
   const [passVisible, setPassVisible] = useState(true);
   // const [userDetails, setUserDetails] = useState({});
 
-  const callApi = async (userDetails) => {
-    await axios.post(`https://reqres.in/api/register`, userDetails)
-      .then(res =>
-        console.log(res.data, 'response')
-      )
-      .catch((e) => { console.log(e) })
-  }
+  // const callApi = async (userDetails) => {
+  //   await axios.post(`https://reqres.in/api/register`, userDetails)
+  //     .then(res =>
+  //       console.log(res.data, 'response')
+  //     )
+  //     .catch((e) => { console.log(e) })
+  // }
   const passMatch = (pass, rePass) => {
     if (pass === rePass) {
       let userDetails = {
@@ -35,6 +35,11 @@ export default SignUp = ({ navigation }) => {
         email: email,
         password: password,
       }));
+      // navigation.navigate('Home')
+      navigation.navigate('LoginDetails', {
+        "email": email,
+        "password": password,
+      })
       // console.log("User Details: ", JSON.stringify(userDetails));
       return 'Password Matched';
     } else {
@@ -88,7 +93,7 @@ export default SignUp = ({ navigation }) => {
             </Pressable>
           </View>
         </View>
-        <Pressable style={styles.loginBtn} onPress={() => Alert.alert(passMatch(password, newPassword))}>
+        <Pressable style={styles.loginBtn} onPress={() => passMatch(password, newPassword)}>
           <Text style={styles.loginTxt}>Create Account</Text>
         </Pressable>
         <View style={styles.noAccountContainer}>

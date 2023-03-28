@@ -71,12 +71,13 @@ export default LogIn = ({ navigation }) => {
         <Pressable style={styles.loginBtn}
           onPress={() => {
             // callApi();
-            dispatch(LoginAction({
-              email: email,
-              password: password,
-            }))
+            dispatch(LoginAction({ email: email, password: password }))
             // navigation.navigate('Home');
-            Alert.alert('logged in');
+            navigation.navigate('LoginDetails', {
+              "email": email,
+              "password": password,
+            });
+            // Alert.alert('logged in');
           }}
         >
           <Text style={styles.loginTxt}>Login</Text>

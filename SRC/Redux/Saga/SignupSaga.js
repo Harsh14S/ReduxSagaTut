@@ -3,7 +3,7 @@ import API from "../../Common/API"
 import { SIGNUP_FAILED, SIGNUP_REQUEST, SIGNUP_SUCCESS } from "../Actions/Constant";
 
 export function* SignupAsync({ params }) {
-  console.log("Saga: ", params);
+  // console.log("Signup Saga: ", params);
   try {
     const response = yield call(API.signUp, params);
     yield put({ type: SIGNUP_SUCCESS, payload: response });

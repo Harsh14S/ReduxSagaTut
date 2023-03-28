@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useSelector } from 'react-redux'
+import Colors from '../Common/Colors'
 
 const CartBillComponent = () => {
 
@@ -38,7 +39,7 @@ export default CartBillComponent
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'darkgreen',
+    backgroundColor: Colors.midnightBlue_80,
     marginVertical: RFPercentage(2),
     marginHorizontal: RFPercentage(3),
     padding: RFPercentage(1.5),
@@ -53,17 +54,17 @@ const styles = StyleSheet.create({
     flex: 4,
     fontSize: RFPercentage(2),
     fontWeight: '700',
-    color: 'white',
+    color: Colors.white,
   },
   amountTxt: {
     flex: 1,
     fontSize: RFPercentage(2),
     fontWeight: '500',
-    color: 'white',
+    color: Colors.white,
   },
   divider: {
     padding: RFPercentage(0.1),
-    backgroundColor: 'darkgrey',
+    backgroundColor: Colors.lightGrey,
     marginVertical: RFPercentage(1),
     borderRadius: RFPercentage(100),
   },
