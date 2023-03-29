@@ -1,7 +1,6 @@
 import { SafeAreaView, Text, View } from 'react-native'
 import React from 'react';
 import Home from './Home';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Cart from './Cart';
 import LogInSignUp from './LogInSignUp';
@@ -11,19 +10,26 @@ import LoginDetails from './LoginDetails';
 import SearchPage from './SearchPage';
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import { Image } from 'react-native/types';
+import DrawerComponent from './DrawerComponent';
+import Profile from './Profile';
+import Settings from './Settings';
+import { useSelector } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
 export default Nav = () => {
+  const UserProfileData = useSelector(state => state.GetUserProfile);
+  const LogInData = useSelector(state => state.LogIn);
+  const SignUpData = useSelector(state => state.SignUp);
+  // console.log("LogInData: ", LogInData);
   return (
     <Stack.Navigator
       // initialRouteName='Home'
       initialRouteName='LogInSignUp'
       // initialRouteName='SignUp'
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="LogInSignUp" component={LogInSignUp} />
@@ -39,24 +45,21 @@ export default Nav = () => {
 const DrawerNav = () => {
   return (
     <Drawer.Navigator
-      drawerContent={() => (
-        <SafeAreaView>
-          <Text>Hello</Text>
-        </SafeAreaView>
-      )}
+      initialRouteName='Home'
+      defaultStatus='open'
+      drawerContent={(props) => <DrawerComponent {...props} />}
       screenOptions={{
         headerShown: false,
         drawerItemStyle: {
           padding: RFPercentage(1),
-        }
+        },
+        drawerHideStatusBarOnOpen: false
       }}
     >
-      <Drawer.Screen name="Home" component={Home}
-        options={{
-          // drawerIcon: {},
-          // drawerLabel: ({ focused, })
-        }}
-      />
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Cart" component={Cart} />
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>
   )
 }

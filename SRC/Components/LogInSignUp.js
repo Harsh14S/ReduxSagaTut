@@ -1,12 +1,20 @@
 import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Colors from '../Common/Colors'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { ImageLinks } from '../Common/Links'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
 
 export default LogInSignUp = ({ navigation }) => {
   const [signstyle, setsignStyle] = useState();
   const [logstyle, setLogStyle] = useState();
+  const dispatch = useDispatch();
+  // const UserProfileData = useSelector(state => state.GetUserProfile);
+  useEffect(() => {
+    dispatch(GetUserProfileAction());
+  }, [])
+  // console.log("UserProfileData: ", UserProfileData);
   return (
     <ImageBackground source={ImageLinks.Wardrobe} style={styles.container}>
       <View style={styles.subContainer}>

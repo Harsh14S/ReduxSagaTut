@@ -1,33 +1,44 @@
 import { Alert, Dimensions, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ImageLinks } from '../Common/Links'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../Common/Colors'
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { LoginAction } from '../Redux/Actions/LoginAction'
+import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
 
 export default LogIn = ({ navigation }) => {
   const dispatch = useDispatch();
-  const LoginData = useSelector(state => state.LogIn)
+  const LoginData = useSelector(state => state.LogIn);
+  // console.log("LoginData", LoginData);
+  const UserProfileData = useSelector(state => state.GetUserProfile);
+  useEffect(() => {
+    dispatch(GetUserProfileAction());
+  }, [])
 
   const [email, setEmail] = useState('tracey.ramos@reqres.in');
   const [password, setPassword] = useState('asdasd');
   const [passVisible, setPassVisible] = useState(true);
 
+  // console.log("UserProfileData: ", UserProfileData.data[0].data[0].avatar);
 
-  const callApi = async () => {
-    let userDetails = {
-      email: email,
-      password: password
-    }
-    await axios.post('https://reqres.in/api/login', userDetails)
-      .then(res =>
-        // console.log(res.data, "Login")
-        navigation.navigate('Home')
-      )
-      .catch((e) => console.log(e))
-  }
+  // const callApi = async () => {
+  //   let userDetails = {
+  //     email: email,
+  //     password: password
+  //   }
+  //   await axios.post('https://reqres.in/api/login', userDetails)
+  //     .then(res =>
+  //       // console.log(res.data, "Login")
+  //       navigation.navigate('Home')
+  //     )
+  //     .catch((e) => console.log(e))
+  // }
+
+  const loginConfirm = () => {
+    dispatch(LoginAction({ navigation, user: { email: email, password: password } }))
+  };
+
 
   return (
     <ImageBackground source={ImageLinks.Wardrobe} style={styles.container}>
@@ -71,13 +82,15 @@ export default LogIn = ({ navigation }) => {
         <Pressable style={styles.loginBtn}
           onPress={() => {
             // callApi();
-            dispatch(LoginAction({ email: email, password: password }))
             // navigation.navigate('Home');
-            navigation.navigate('LoginDetails', {
-              "email": email,
-              "password": password,
-            });
+            // navigation.navigate('LoginDetails', {
+            //   "email": email,
+            //   "password": password,
+            // });
             // Alert.alert('logged in');
+            loginConfirm()
+            // setEmail("")
+            // setPassword("")
           }}
         >
           <Text style={styles.loginTxt}>Login</Text>

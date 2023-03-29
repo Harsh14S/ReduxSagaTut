@@ -14,14 +14,14 @@ export default CartHeader = ({ navigation }) => {
         style={styles.left}
         onPress={() => navigation.goBack()}
       >
-        <Image source={IconUri.leftArrowIcon} style={styles.leftIcon} resizeMode={'contain'} />
+        <Image source={IconUri.LeftArrowIcon} style={styles.leftIcon} resizeMode={'contain'} />
       </Pressable>
       <Pressable style={styles.mid}>
         <Text style={styles.headingTxt}>Cart</Text>
       </Pressable>
 
       <Pressable style={styles.right} onPress={() => dispatch(emptyCart())}>
-        <Image source={IconUri.binIcon} style={styles.rightIcon} resizeMode={'contain'} />
+        <Image source={IconUri.BinIcon} style={styles.rightIcon} resizeMode={'contain'} />
       </Pressable>
     </View >
   )

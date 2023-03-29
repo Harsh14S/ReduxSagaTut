@@ -7,11 +7,11 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 export default LoginDetails = ({ route, navigation }) => {
   const LoginData = useSelector(state => state.LogIn);
   const SignupData = useSelector(state => state.SignUp);
-  // console.log("Route: ", route.params);
+  // console.log("Route: ", route);
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('DrawerNav')
-    }, 1500)
+    }, 1000)
   }, [])
 
   return (

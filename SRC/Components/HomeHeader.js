@@ -16,14 +16,14 @@ export default HomeHeader = ({ navigation }) => {
         style={styles.left}
         onPress={() => navigation.openDrawer()}
       >
-        <Image source={IconUri.barsIcon} style={styles.barImg} resizeMode={'contain'} />
+        <Image source={IconUri.BarsIcon} style={styles.barImg} resizeMode={'contain'} />
       </Pressable>
       <Pressable style={styles.mid}>
         <Text style={styles.headingTxt}>Home</Text>
       </Pressable>
 
       <Pressable style={styles.right} onPress={() => navigation.navigate('Cart')}>
-        <Image source={CartData.length > 0 ? IconUri.cartFilledIcon : IconUri.cartIcon} style={styles.cartImg} resizeMode={'contain'} />
+        <Image source={CartData.length > 0 ? IconUri.CartFilledIcon : IconUri.CartIcon} style={styles.cartImg} resizeMode={'contain'} />
 
       </Pressable>
     </View >
