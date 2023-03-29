@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../Redux/Actions/Action';
@@ -6,6 +6,8 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 import { productList } from '../Redux/Actions/ProductAction';
 import CartHeader from './CartHeader';
 import CartBillComponent from './CartBillComponent';
+import Colors from '../Common/Colors';
+import { ImageLinks } from '../Common/Links';
 
 export default Cart = ({ navigation }) => {
 
@@ -16,39 +18,51 @@ export default Cart = ({ navigation }) => {
     dispatch(productList());
   }, []);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <CartHeader navigation={navigation} />
-      <CartBillComponent />
-      <FlatList
-        data={CartData}
-        renderItem={({ item, index }) => (
-          <View key={index} style={{ margin: RFPercentage(1) }}>
-            <View style={{ flexDirection: 'row', flex: 1 }}>
-              <View style={styles.detailsContainer}>
-                <Text>Product: {item.title}</Text>
-                <Text>Price: {item.price}</Text>
-                <Text>Brand: {item.brand}</Text>
-                <Text>Category: {item.category}</Text>
-                <Text>Description: {item.description}</Text>
+      {CartData.length > 0 ? (
+        <View>
+          <CartBillComponent />
+          <FlatList
+            data={CartData}
+            renderItem={({ item, index }) => (
+              <View key={index} style={{ marginHorizontal: RFPercentage(1.5), marginBottom: RFPercentage(1) }}>
+                <View style={{ flexDirection: 'row', flex: 1 }}>
+                  <View style={styles.detailsContainer}>
+                    <Text style={styles.headingTxt}>Product: <Text style={styles.txt}>{item.title}</Text></Text>
+                    <Text style={styles.headingTxt}>Price: <Text style={styles.txt}>{item.price}</Text></Text>
+                    <Text style={styles.headingTxt}>Brand: <Text style={styles.txt}>{item.brand}</Text></Text>
+                    <Text style={styles.headingTxt}>Category: <Text style={styles.txt}>{item.category}</Text></Text>
+                    <Text style={styles.headingTxt}>Description: <Text style={styles.txt}>{item.description}</Text></Text>
+                  </View>
+                  <Image
+                    source={{ uri: item.thumbnail }}
+                    style={styles.thumbnail}
+                    resizeMode={'contain'}
+                  />
+                </View>
+                <View style={styles.btnContainers}>
+                  <Pressable
+                    style={styles.btn}
+                    onPress={() => dispatch(removeFromCart(item.id))}
+                  >
+                    <Text style={styles.btnTxt}>Remove From Cart</Text>
+                  </Pressable>
+                </View>
               </View>
-              <Image
-                source={{ uri: item.thumbnail }}
-                style={styles.thumbnail}
-                resizeMode={'contain'}
-              />
-            </View>
-            <View style={styles.btnContainers}>
-              <Pressable
-                style={styles.btn}
-                onPress={() => dispatch(removeFromCart(item.id))}
-              >
-                <Text style={styles.btnTxt}>Remove From Cart</Text>
-              </Pressable>
-            </View>
-          </View>
-        )}
-      />
-    </View>
+            )}
+          />
+        </View>
+      ) : (
+        <View style={{ flex: 1, alignItems: 'center', marginTop: RFPercentage(15) }}>
+          <Image
+            source={ImageLinks.EmptyCart}
+            resizeMode={'contain'}
+            style={{ height: RFPercentage(50), width: RFPercentage(50), tintColor: Colors.midnightBlue_80 }}
+          />
+        </View>
+      )}
+    </SafeAreaView>
   )
 }
 
@@ -61,23 +75,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   btnContainers: {
-    // flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginTop: RFPercentage(1),
   },
-  emptybtn: {
-    backgroundColor: 'darkgreen',
-    marginHorizontal: RFPercentage(5),
-    marginTop: RFPercentage(2),
-    paddingVertical: RFPercentage(1.5),
-    borderRadius: RFPercentage(1.5),
-    alignItems: 'center',
-  },
   btn: {
     flex: 1,
-    backgroundColor: 'darkred',
+    backgroundColor: Colors.midnightBlue_80,
     marginHorizontal: RFPercentage(2),
     paddingVertical: RFPercentage(1.5),
     borderRadius: RFPercentage(1.5),
@@ -85,11 +90,8 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     fontSize: RFPercentage(1.6),
-    color: 'white',
+    color: Colors.white,
     fontWeight: '700',
-  },
-  productContainer: {
-
   },
   thumbnail: {
     height: RFPercentage(20),
@@ -99,52 +101,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: RFPercentage(0.5),
     justifyContent: 'space-evenly',
-  }
-})
-
-const headerStyles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    // backgroundColor: 'gold',
-    alignItems: 'center',
-    padding: RFPercentage(1),
-    // justifyContent: 'space-evenly',
-  },
-  left: {
-    paddingHorizontal: RFPercentage(1),
-  },
-  btnTxt: {
-    fontSize: RFPercentage(1.6),
-    color: 'white',
-    fontWeight: '700',
-  },
-  mid: {
-    flex: 1,
-    alignItems: 'center',
   },
   headingTxt: {
-    fontSize: RFPercentage(2.5),
     fontWeight: '700',
+    color: Colors.black_94,
+    fontSize: RFPercentage(1.6),
   },
-  right: {
-    paddingHorizontal: RFPercentage(1),
+  txt: {
+    fontWeight: '400',
+    color: Colors.black_94,
+    fontSize: RFPercentage(1.6),
   },
-  cartImg: {
-    height: RFPercentage(4),
-    width: RFPercentage(4),
-    tintColor: 'black',
-  },
-  itemIndicatorView: {
-    width: RFPercentage(3),
-    alignItems: 'center',
-    position: 'absolute',
-    right: 0,
-    backgroundColor: 'darkgreen',
-    borderRadius: RFPercentage(100),
-    padding: RFPercentage(0.6),
-  },
-  itemIndicator: {
-    color: 'white',
-    fontSize: RFPercentage(1.4)
-  }
 })
+

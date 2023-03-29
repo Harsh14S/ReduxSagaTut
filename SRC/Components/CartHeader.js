@@ -3,75 +3,64 @@ import React from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch, useSelector } from 'react-redux'
 import { emptyCart } from '../Redux/Actions/Action'
+import { IconUri } from '../Common/Links'
 
 export default CartHeader = ({ navigation }) => {
   const CartData = useSelector((state) => state.CartData);
-  console.log("Cart: ", CartData);
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Pressable
         style={styles.left}
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.goBack()}
       >
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/318/318477.png' }} style={styles.cartImg} resizeMode={'contain'} />
+        <Image source={IconUri.LeftArrowIcon} style={styles.leftIcon} resizeMode={'contain'} />
       </Pressable>
       <Pressable style={styles.mid}>
         <Text style={styles.headingTxt}>Cart</Text>
       </Pressable>
-      <Pressable style={styles.right} onPress={() => dispatch(emptyCart())} >
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/484/484611.png' }} style={styles.cartImg} resizeMode={'contain'} />
+
+      <Pressable style={styles.right} onPress={() => dispatch(emptyCart())}>
+        <Image source={IconUri.BinIcon} style={styles.rightIcon} resizeMode={'contain'} />
       </Pressable>
-    </View>
+    </View >
   )
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    // backgroundColor: 'gold',
     width: Dimensions.get('screen').width,
     alignItems: 'center',
-    padding: RFPercentage(1),
-    // justifyContent: 'space-evenly',
+    paddingHorizontal: RFPercentage(1.5),
   },
   left: {
-    paddingHorizontal: RFPercentage(1),
+    padding: RFPercentage(1.25),
+    backgroundColor: Colors.midnightBlue_80,
+    borderRadius: RFPercentage(100),
   },
-  btnTxt: {
-    fontSize: RFPercentage(1.6),
-    color: 'white',
-    fontWeight: '700',
+  leftIcon: {
+    height: RFPercentage(3),
+    width: RFPercentage(3),
+    tintColor: Colors.white,
   },
   mid: {
     flex: 1,
     alignItems: 'center',
   },
   headingTxt: {
-    fontSize: RFPercentage(2.5),
+    fontSize: RFPercentage(3),
     fontWeight: '700',
+    color: Colors.black_94
   },
   right: {
-    paddingHorizontal: RFPercentage(1),
+    padding: RFPercentage(1),
+    backgroundColor: Colors.midnightBlue_80,
+    borderRadius: RFPercentage(100),
   },
-  cartImg: {
+  rightIcon: {
     height: RFPercentage(3.5),
     width: RFPercentage(3.5),
-    tintColor: 'black',
+    tintColor: Colors.white,
   },
-  itemIndicatorView: {
-    width: RFPercentage(3),
-    alignItems: 'center',
-    position: 'absolute',
-    right: 0,
-    backgroundColor: 'darkgreen',
-    borderRadius: RFPercentage(100),
-    padding: RFPercentage(0.6),
-  },
-  itemIndicator: {
-    color: 'white',
-    fontSize: RFPercentage(1.4)
-  }
 })

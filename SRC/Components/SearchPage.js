@@ -1,39 +1,29 @@
-import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '../Redux/Actions/Action';
-import { RFPercentage } from 'react-native-responsive-fontsize';
-import HomeHeader from './HomeHeader';
-import { GetProductAction } from '../Redux/Actions/GetProductAction';
-import Colors from '../Common/Colors';
-import { IconUri } from '../Common/Links';
+import SearchBar from './SearchBar'
+import Colors from '../Common/Colors'
+import { useDispatch, useSelector } from 'react-redux'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+import { GetSearchProductAction } from '../Redux/Actions/GetSearchProductAction'
+import { addToCart, removeFromCart } from '../Redux/Actions/Action'
 
-const Home = ({ navigation }) => {
+export default SearchPage = ({ navigation }) => {
   const [data, setData] = useState('');
   const dispatch = useDispatch();
-  const getProductData = useSelector((state) => state.GetProduct);
+  const SearchProductData = useSelector(state => state.GetSearchProduct)
+  console.log(SearchProductData, ' : SearchProductData');
 
-  useEffect(() => {
-    dispatch(GetProductAction());
-  }, []);
+  const SearchProduct = SearchProductData && SearchProductData.data && SearchProductData.data[0];
+  // setData(SearchProduct)
 
-  useEffect(() => {
-    const Product = getProductData && getProductData.data && getProductData.data[0];
-    setData(Product)
-    // console.log('product', Product);
-  }, [getProductData])  // dependency is compulsory so that data is rendered properly after getting on this page (getProductData)
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={'dark-content'} />
-      <HomeHeader navigation={navigation} />
-      <Pressable style={styles.searchBar} onPress={() => navigation.navigate('SearchProduct')}>
-        <Image style={styles.searchBarIcons} source={IconUri.SearchIcon} resizeMode={'contain'} />
-        <Text style={styles.searchBarTxt}>Search for products</Text>
-        <Image style={styles.searchBarIcons} source={IconUri.MicrophoneIcon} resizeMode={'contain'} />
-        <Image style={styles.searchBarIcons} source={IconUri.CameraIcon} resizeMode={'contain'} />
-      </Pressable>
+      {/* <ScrollView> */}
+      <SearchBar navigation={navigation} />
       <FlatList
-        data={data}
+        // scrollEnabled={false}
+        style={{ flex: 1 }}
+        data={SearchProduct}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <View key={index} style={{ marginHorizontal: RFPercentage(1.5), marginBottom: RFPercentage(1) }}>
@@ -68,43 +58,16 @@ const Home = ({ navigation }) => {
           </View>
         )}
       />
+      {/* </ScrollView> */}
     </SafeAreaView>
   )
 }
 
-export default Home
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: Dimensions.get('screen').width,
     backgroundColor: Colors.white,
-  },
-  searchBar: {
-    backgroundColor: Colors.midnightBlue_80,
-    flexDirection: 'row',
-    borderWidth: RFPercentage(0.1),
-    borderBottomColor: '',
-    alignItems: 'center',
-    marginHorizontal: RFPercentage(1.5),
-    marginTop: RFPercentage(1),
-    borderRadius: RFPercentage(1.5),
-    borderColor: Colors.lightGrey,
-    overflow: 'hidden',
-    paddingRight: RFPercentage(1.5),
-    paddingVertical: RFPercentage(1.4)
-  },
-  searchBarIcons: {
-    height: RFPercentage(2.5),
-    width: RFPercentage(2.5),
-    tintColor: Colors.white,
-    marginLeft: RFPercentage(1.5)
-  },
-  searchBarTxt: {
-    flex: 1,
-    paddingLeft: RFPercentage(2),
-    fontSize: RFPercentage(2),
-    color: Colors.white,
   },
   btnContainers: {
     flexWrap: 'wrap',
@@ -144,5 +107,5 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: Colors.black_94,
     fontSize: RFPercentage(1.6),
-  },
+  }
 })

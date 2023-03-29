@@ -29,3 +29,18 @@ npm install react-native-screens react-native-safe-area-context
 # for stack screen navigation
 
 npm install @react-navigation/native-stack
+
+# for stack Drawer navigation
+
+npm install @react-navigation/drawer
+
+<!-- npm install react-native-gesture-handler react-native-reanimated -->
+
+npm install --save react-native-gesture-handler
+npm install --save react-native-reanimated
+
+<!-- Add this below line to babel.config.js -->
+
+plugins: ['react-native-reanimated/plugin']
+
+npm start -- --reset-cache
