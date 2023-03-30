@@ -17,4 +17,6 @@ export const IconUri = {
   HomeIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/1946/1946436.png' },
   ProfileIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/64/64572.png' },
   SettingIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3524/3524659.png' },
+  CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2956/2956744.png' },
+
 }

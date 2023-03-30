@@ -7,8 +7,9 @@ import HomeHeader from './HomeHeader';
 import { GetProductAction } from '../Redux/Actions/GetProductAction';
 import Colors from '../Common/Colors';
 import { IconUri } from '../Common/Links';
+import DeviceInfo from 'react-native-device-info';
 
-const Home = ({ navigation }) => {
+export default Home = ({ navigation }) => {
   const [data, setData] = useState('');
   const dispatch = useDispatch();
   const getProductData = useSelector((state) => state.GetProduct);
@@ -72,13 +73,14 @@ const Home = ({ navigation }) => {
   )
 }
 
-export default Home
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Dimensions.get('screen').width,
     backgroundColor: Colors.white,
+    paddingTop: DeviceInfo.hasNotch() ? null : RFPercentage(1.5),
   },
   searchBar: {
     backgroundColor: Colors.midnightBlue_80,

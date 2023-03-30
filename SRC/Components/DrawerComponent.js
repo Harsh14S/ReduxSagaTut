@@ -1,37 +1,42 @@
-import { Image, Platform, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../Common/Colors'
-import { IconUri, ImageLinks } from '../Common/Links'
-import DeviceInfo from 'react-native-device-info'
+import { IconUri } from '../Common/Links'
 import { useSelector } from 'react-redux'
 
-export default DrawerComponent = ({ navigation }) => {
-  // console.log("Has Notch: ", DeviceInfo.hasNotch());
-  const UserProfileData = useSelector(state => state.GetUserProfile);
-  console.log("UserProfileData: ", UserProfileData.data[0].data[1].avatar);
-  const ProfileImg = UserProfileData.data[0].data[1].avatar;
+export default DrawerComponent = ({ route, navigation }) => {
+  const [active, setActive] = useState(false);
+  const [inActive, setInActive] = useState(true);
+
+  const UserProfile = useSelector(state => state.GetUserProfile);
+  const UserProfileData = UserProfile.data;
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'light-content'} />
       <View style={styles.headerSection}>
         <TouchableOpacity activeOpacity={0.5} style={styles.userProfileBtn}>
-          <Image style={styles.userProfileImg} source={{ uri: `${ProfileImg}` } || IconUri.ProfileIcon} />
+          {/* <Image style={styles.userProfileImg} source={{ uri: `${ProfileImg}` } || IconUri.ProfileIcon} /> */}
+          <Image style={styles.userProfileImg} source={{ uri: UserProfileData.avatar } || IconUri.ProfileIcon} />
         </TouchableOpacity>
         <View style={styles.userNameContainer}>
-          <Text style={styles.userName}>George Bluth</Text>
-          <Text style={styles.userEmail}>george.bluth@reqres.in</Text>
+          <Text style={styles.userName}>{UserProfileData.first_name} {UserProfileData.last_name}</Text>
+          <Text style={styles.userEmail}>{UserProfileData.email}</Text>
         </View>
       </View>
 
       <View style={styles.bodySection}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer, styles.activeBtnColor]} onPress={() => navigation.navigate('Home')}>
           <Image style={styles.screenLogo} source={IconUri.HomeIcon} />
           <Text style={styles.screenName}>Home</Text>
         </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('SearchProduct')}>
+          <Image style={styles.screenLogo} source={IconUri.SearchIcon} />
+          <Text style={styles.screenName}>Search Product</Text>
+        </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Cart')}>
           <Image style={styles.screenLogo} source={IconUri.CartFilledIcon} />
-          <Text style={styles.screenName}>Cart</Text>
+          <Text style={styles.screenName}>Shopping</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Profile')}>
           <Image style={styles.screenLogo} source={IconUri.ProfileIcon} />
@@ -65,6 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(100),
     overflow: 'hidden'
   },
+  activeBtnColor: { backgroundColor: Colors.grey },
   userProfileImg: {
     height: RFPercentage(15),
     width: RFPercentage(15),

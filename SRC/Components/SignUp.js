@@ -1,4 +1,4 @@
-import { Alert, Dimensions, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Dimensions, ImageBackground, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ImageLinks } from '../Common/Links'
 import { RFPercentage } from 'react-native-responsive-fontsize'
@@ -6,41 +6,33 @@ import Colors from '../Common/Colors'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { SignupAction } from '../Redux/Actions/SignupAction'
+import DeviceInfo from 'react-native-device-info'
 
 export default SignUp = ({ navigation }) => {
   const dispatch = useDispatch();
   const SignupData = useSelector(state => state.SignUp)
-  // console.log("SignupData: ", SignupData);
   const [email, setEmail] = useState('janet.weaver@reqres.in');
   const [password, setPassword] = useState('pistasdaasdol');
   const [newPassword, setNewPassword] = useState('pistasdaasdol');
   const [passVisible, setPassVisible] = useState(true);
-  // const [userDetails, setUserDetails] = useState({});
 
-  // const callApi = async (userDetails) => {
-  //   await axios.post(`https://reqres.in/api/register`, userDetails)
-  //     .then(res =>
-  //       console.log(res.data, 'response')
-  //     )
-  //     .catch((e) => { console.log(e) })
-  // }
   const passMatch = (pass, rePass) => {
     if (pass === rePass) {
       let userDetails = {
         email: email,
         password: password,
       }
-      // callApi(userDetails);
+
       dispatch(SignupAction({
         email: email,
         password: password,
       }));
-      // navigation.navigate('Home')
+
       navigation.navigate('LoginDetails', {
         "email": email,
         "password": password,
       })
-      // console.log("User Details: ", JSON.stringify(userDetails));
+
       return 'Password Matched';
     } else {
       setPassword('');
@@ -126,9 +118,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: RFPercentage(10),
     backgroundColor: Colors.white,
     paddingTop: RFPercentage(11),
-    paddingBottom: RFPercentage(6),
+    paddingBottom: DeviceInfo.hasNotch() ? RFPercentage(3.5) : RFPercentage(1),
     alignItems: 'center',
     paddingHorizontal: RFPercentage(4),
+    // backgroundColor: Colors.lightGrey,
   },
   welcomeTitle: {
     fontSize: RFPercentage(4.5),
@@ -149,15 +142,19 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     backgroundColor: Colors.silver_90_66,
-    padding: RFPercentage(1.5),
+    padding: Platform.OS === 'ios' ? RFPercentage(1.5) : null,
     marginBottom: RFPercentage(1.5),
-    borderRadius: RFPercentage(100),
     width: '100%',
+    borderRadius: RFPercentage(1.3),
+    borderWidth: RFPercentage(0.2),
+    borderColor: Colors.lightGrey,
   },
   inputBar: {
+    marginHorizontal: Platform.OS === 'ios' ? null : RFPercentage(1),
+    // backgroundColor: Colors.lightGrey,
     fontSize: RFPercentage(2),
     color: Colors.black_94,
-    width: '100%',
+    // width: '100%',
   },
   forgotBtnContainer: {
     marginBottom: RFPercentage(1.5),

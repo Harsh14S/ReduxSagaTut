@@ -1,5 +1,4 @@
-import { SafeAreaView, Text, View } from 'react-native'
-import React from 'react';
+import React, { useState } from 'react';
 import Home from './Home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Cart from './Cart';
@@ -8,12 +7,14 @@ import LogIn from './LogIn';
 import SignUp from './SignUp';
 import LoginDetails from './LoginDetails';
 import SearchPage from './SearchPage';
-import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItem, useDrawerStatus } from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import DrawerComponent from './DrawerComponent';
 import Profile from './Profile';
 import Settings from './Settings';
 import { useSelector } from 'react-redux';
+import PermissionsPage from './PermissionsPage';
+import Camera from './Camera';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -27,7 +28,7 @@ export default Nav = () => {
     <Stack.Navigator
       // initialRouteName='Home'
       initialRouteName='LogInSignUp'
-      // initialRouteName='SignUp'
+      // initialRouteName='PermissionsPage'
       screenOptions={{
         headerShown: false,
       }}
@@ -36,18 +37,22 @@ export default Nav = () => {
       <Stack.Screen name="LogIn" component={LogIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="DrawerNav" component={DrawerNav} />
-      <Stack.Screen name="Cart" component={Cart} />
-      <Stack.Screen name="SearchProduct" component={SearchPage} />
       <Stack.Screen name="LoginDetails" component={LoginDetails} />
+      <Stack.Screen name="PermissionsPage" component={PermissionsPage} />
+      <Stack.Screen name="Camera" component={Camera} />
+      {/* <Stack.Screen name="SearchProduct" component={SearchPage} /> */}
+      {/* <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} /> */}
     </Stack.Navigator>
   )
 }
-const DrawerNav = () => {
+const DrawerNav = ({ route }) => {
   return (
     <Drawer.Navigator
-      initialRouteName='Home'
+      initialRouteName='Permissions'
       defaultStatus='open'
-      drawerContent={(props) => <DrawerComponent {...props} />}
+      drawerContent={(props) => <DrawerComponent {...props} route={route} />}
       screenOptions={{
         headerShown: false,
         drawerItemStyle: {
@@ -60,6 +65,8 @@ const DrawerNav = () => {
       <Drawer.Screen name="Cart" component={Cart} />
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Settings" component={Settings} />
+      {/* <Drawer.Screen name="Permissions" component={Permissions} /> */}
+      <Stack.Screen name="SearchProduct" component={SearchPage} />
     </Drawer.Navigator>
   )
 }

@@ -22,7 +22,7 @@ export default SearchBar = ({ navigation }) => {
           </Pressable>)
         }
         {
-          textActive ? (<Pressable onPress={() => navigation.goBack()}>
+          textActive ? (<Pressable onPress={() => navigation.navigate('Home')}>
             <Image style={styles.searchBarIcons} source={IconUri.LeftArrowIcon} resizeMode={'contain'} />
           </Pressable>) : null
         }

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import GetProductReducer from "./GetProductReducer";
 import GetSearchProductReducer from "./GetSearchProductReducer";
+import GetUserDataReducer from "./GetUserDataReducer";
 import GetUserProfileReducer from "./GetUserProfileReducer";
 import LoginReducer from "./LoginReducer";
 import ProductReducer from "./ProductReducer";
@@ -14,5 +15,6 @@ export default indexReducer = combineReducers({
   GetSearchProduct: GetSearchProductReducer,
   SignUp: SignupReducer,
   LogIn: LoginReducer,
+  GetUserData: GetUserDataReducer,
   GetUserProfile: GetUserProfileReducer,
 })

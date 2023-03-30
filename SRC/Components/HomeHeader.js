@@ -1,17 +1,19 @@
-import { Alert, Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useDebugValue, useState } from 'react'
+import { Alert, Dimensions, Image, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
+import React, { useDebugValue, useEffect, useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch, useSelector } from 'react-redux'
-import { emptyCart } from '../Redux/Actions/Action'
 import Colors from '../Common/Colors'
 import { IconUri } from '../Common/Links'
+import { useDrawerStatus } from '@react-navigation/drawer'
 
 export default HomeHeader = ({ navigation }) => {
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  // const [statusBarStyle, setStatusBarStyle] = useState('dark-content');
+  // const [showSearchBar, setShowSearchBar] = useState(false);
   const CartData = useSelector((state) => state.CartData);
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
+      {/* <StatusBar barStyle={''} /> */}
       <Pressable
         style={styles.left}
         onPress={() => navigation.openDrawer()}

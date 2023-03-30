@@ -8,6 +8,7 @@ import CartHeader from './CartHeader';
 import CartBillComponent from './CartBillComponent';
 import Colors from '../Common/Colors';
 import { ImageLinks } from '../Common/Links';
+import DeviceInfo from 'react-native-device-info';
 
 export default Cart = ({ navigation }) => {
 
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get('screen').width,
     backgroundColor: 'white',
+    paddingTop: DeviceInfo.hasNotch() ? null : RFPercentage(1.5),
   },
   btnContainers: {
     flexWrap: 'wrap',

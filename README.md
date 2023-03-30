@@ -44,3 +44,16 @@ npm install --save react-native-reanimated
 plugins: ['react-native-reanimated/plugin']
 
 npm start -- --reset-cache
+
+# react-native Permissions
+
+see the npm librariy react-native-permissions
+
+# Camera access check npm library for further procedures
+
+npm i react-native-camera
+npm i react-native-camera-hooks
+
+# native fileSystem access
+
+npm i react-native-fs

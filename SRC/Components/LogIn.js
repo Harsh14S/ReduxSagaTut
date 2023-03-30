@@ -1,22 +1,18 @@
-import { Alert, Dimensions, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Dimensions, ImageBackground, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ImageLinks } from '../Common/Links'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../Common/Colors'
 import { useDispatch, useSelector } from 'react-redux'
 import { LoginAction } from '../Redux/Actions/LoginAction'
-import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
+import DeviceInfo from 'react-native-device-info'
+// import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
 
 export default LogIn = ({ navigation }) => {
   const dispatch = useDispatch();
-  const LoginData = useSelector(state => state.LogIn);
-  // console.log("LoginData", LoginData);
-  const UserProfileData = useSelector(state => state.GetUserProfile);
-  useEffect(() => {
-    dispatch(GetUserProfileAction());
-  }, [])
 
-  const [email, setEmail] = useState('tracey.ramos@reqres.in');
+  // const [email, setEmail] = useState('tracey.ramos@reqres.in');
+  const [email, setEmail] = useState('george.bluth@reqres.in');
   const [password, setPassword] = useState('asdasd');
   const [passVisible, setPassVisible] = useState(true);
 
@@ -81,16 +77,7 @@ export default LogIn = ({ navigation }) => {
         </View>
         <Pressable style={styles.loginBtn}
           onPress={() => {
-            // callApi();
-            // navigation.navigate('Home');
-            // navigation.navigate('LoginDetails', {
-            //   "email": email,
-            //   "password": password,
-            // });
-            // Alert.alert('logged in');
             loginConfirm()
-            // setEmail("")
-            // setPassword("")
           }}
         >
           <Text style={styles.loginTxt}>Login</Text>
@@ -124,9 +111,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: RFPercentage(10),
     backgroundColor: Colors.white,
     paddingTop: RFPercentage(11),
-    paddingBottom: RFPercentage(6),
+    paddingBottom: DeviceInfo.hasNotch() ? RFPercentage(3.5) : RFPercentage(1),
     alignItems: 'center',
     paddingHorizontal: RFPercentage(4),
+    // backgroundColor: Colors.lightGrey,
   },
   welcomeTitle: {
     fontSize: RFPercentage(4.5),
@@ -146,16 +134,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    backgroundColor: Colors.silver_90_66,
-    padding: RFPercentage(1.5),
+    // backgroundColor: Colors.silver_90_66,
+    padding: Platform.OS === 'ios' ? RFPercentage(1.5) : null,
     marginBottom: RFPercentage(1.5),
-    borderRadius: RFPercentage(100),
     width: '100%',
+    borderRadius: RFPercentage(1.3),
+    borderWidth: RFPercentage(0.2),
+    borderColor: Colors.lightGrey,
   },
   inputBar: {
+    marginHorizontal: Platform.OS === 'ios' ? null : RFPercentage(1),
+    // backgroundColor: Colors.lightGrey,
     fontSize: RFPercentage(2),
     color: Colors.black_94,
-    width: '100%',
+    // width: '100%',
   },
   forgotBtnContainer: {
     flexDirection: 'row',
