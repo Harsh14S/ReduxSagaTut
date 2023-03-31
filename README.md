@@ -57,3 +57,11 @@ npm i react-native-camera-hooks
 # native fileSystem access
 
 npm i react-native-fs
+
+# react-native sounds
+
+npm i react-native-sound
+
+# react-native video
+
+npm i react-native-video

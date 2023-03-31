@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from '../Common/Colors'
+import { CommonStyles } from '../Common/Style'
 
 export default Settings = () => {
   return (
@@ -16,5 +17,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.silver_90,
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   }
 })

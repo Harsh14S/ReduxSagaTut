@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../Redux/Actions/Action';
@@ -8,6 +8,7 @@ import { GetProductAction } from '../Redux/Actions/GetProductAction';
 import Colors from '../Common/Colors';
 import { IconUri } from '../Common/Links';
 import DeviceInfo from 'react-native-device-info';
+import { CommonStyles } from '../Common/Style';
 
 export default Home = ({ navigation }) => {
   const [data, setData] = useState('');
@@ -24,7 +25,7 @@ export default Home = ({ navigation }) => {
     // console.log('product', Product);
   }, [getProductData])  // dependency is compulsory so that data is rendered properly after getting on this page (getProductData)
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
       <HomeHeader navigation={navigation} />
       <Pressable style={styles.searchBar} onPress={() => navigation.navigate('SearchProduct')}>
@@ -69,7 +70,7 @@ export default Home = ({ navigation }) => {
           </View>
         )}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get('screen').width,
     backgroundColor: Colors.white,
-    paddingTop: DeviceInfo.hasNotch() ? null : RFPercentage(1.5),
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   searchBar: {
     backgroundColor: Colors.midnightBlue_80,

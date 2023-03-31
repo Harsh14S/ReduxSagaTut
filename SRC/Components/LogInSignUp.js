@@ -4,6 +4,7 @@ import Colors from '../Common/Colors'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { ImageLinks } from '../Common/Links'
 import { useDispatch } from 'react-redux'
+import { CommonStyles } from '../Common/Style'
 
 export default LogInSignUp = ({ navigation }) => {
   const [signstyle, setsignStyle] = useState();
@@ -42,6 +43,7 @@ export default LogInSignUp = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   subContainer: {
     flex: 1,

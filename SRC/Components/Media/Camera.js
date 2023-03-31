@@ -1,8 +1,9 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import Colors from '../Common/Colors';
-import { IconUri } from '../Common/Links';
+import Colors from '../../Common/Colors';
+import { IconUri } from '../../Common/Links';
+import { CommonStyles } from '../../Common/Style';
 
 
 export default Camera = () => {
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   cameraPreview: {
     flex: 1,

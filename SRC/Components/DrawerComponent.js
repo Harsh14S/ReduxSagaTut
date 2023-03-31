@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../Common/Colors'
@@ -6,14 +6,13 @@ import { IconUri } from '../Common/Links'
 import { useSelector } from 'react-redux'
 
 export default DrawerComponent = ({ route, navigation }) => {
-  const [active, setActive] = useState(false);
-  const [inActive, setInActive] = useState(true);
 
   const UserProfile = useSelector(state => state.GetUserProfile);
   const UserProfileData = UserProfile.data;
 
   return (
     <View style={styles.container}>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <View style={styles.headerSection}>
         <TouchableOpacity activeOpacity={0.5} style={styles.userProfileBtn}>
           {/* <Image style={styles.userProfileImg} source={{ uri: `${ProfileImg}` } || IconUri.ProfileIcon} /> */}
@@ -26,7 +25,7 @@ export default DrawerComponent = ({ route, navigation }) => {
       </View>
 
       <View style={styles.bodySection}>
-        <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer, styles.activeBtnColor]} onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer]} onPress={() => navigation.navigate('Home')}>
           <Image style={styles.screenLogo} source={IconUri.HomeIcon} />
           <Text style={styles.screenName}>Home</Text>
         </TouchableOpacity>
@@ -34,18 +33,26 @@ export default DrawerComponent = ({ route, navigation }) => {
           <Image style={styles.screenLogo} source={IconUri.SearchIcon} />
           <Text style={styles.screenName}>Search Product</Text>
         </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('MediaDrawerNav')}>
+          <Image style={styles.screenLogo} source={IconUri.MediaIcon} />
+          <Text style={styles.screenName}>Media</Text>
+        </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Cart')}>
           <Image style={styles.screenLogo} source={IconUri.CartFilledIcon} />
-          <Text style={styles.screenName}>Shopping</Text>
+          <Text style={styles.screenName}>Cart</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Profile')}>
           <Image style={styles.screenLogo} source={IconUri.ProfileIcon} />
           <Text style={styles.screenName}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Settings')}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('PermissionsPage')}>
+          <Image style={styles.screenLogo} source={IconUri.SettingIcon} />
+          <Text style={styles.screenName}>Permissions</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Settings')}>
           <Image style={styles.screenLogo} source={IconUri.SettingIcon} />
           <Text style={styles.screenName}>Settings</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   )

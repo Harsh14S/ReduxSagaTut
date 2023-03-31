@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../Redux/Actions/Action';
@@ -9,6 +9,7 @@ import CartBillComponent from './CartBillComponent';
 import Colors from '../Common/Colors';
 import { ImageLinks } from '../Common/Links';
 import DeviceInfo from 'react-native-device-info';
+import { CommonStyles } from '../Common/Style';
 
 export default Cart = ({ navigation }) => {
 
@@ -19,7 +20,7 @@ export default Cart = ({ navigation }) => {
     dispatch(productList());
   }, []);
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <CartHeader navigation={navigation} />
       {CartData.length > 0 ? (
         <View>
@@ -63,7 +64,7 @@ export default Cart = ({ navigation }) => {
           />
         </View>
       )}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get('screen').width,
     backgroundColor: 'white',
-    paddingTop: DeviceInfo.hasNotch() ? null : RFPercentage(1.5),
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   btnContainers: {
     flexWrap: 'wrap',

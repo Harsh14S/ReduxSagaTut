@@ -1,9 +1,9 @@
-import { Platform, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from '../Common/Colors'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { request, PERMISSIONS } from 'react-native-permissions';
-import { RNCamera, FaceDetector } from 'react-native-camera';
+import { CommonStyles } from '../Common/Style';
 
 export default PermissionsPage = ({ navigation }) => {
   const askForPermissions = (permission) => {
@@ -12,7 +12,7 @@ export default PermissionsPage = ({ navigation }) => {
     });
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
       <Pressable
         style={styles.permissionBtn}
@@ -46,7 +46,7 @@ export default PermissionsPage = ({ navigation }) => {
         onPress={() => navigation.navigate('Camera')}>
         <Text style={styles.permissionBtnTxt}>Open Camera</Text>
       </Pressable>
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.white,
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   permissionBtn: {
     backgroundColor: Colors.midnightBlue_80,

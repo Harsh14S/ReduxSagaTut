@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { SignupAction } from '../Redux/Actions/SignupAction'
 import DeviceInfo from 'react-native-device-info'
+import { CommonStyles } from '../Common/Style'
 
 export default SignUp = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: RFPercentage(7),
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   title: {
     color: Colors.white,

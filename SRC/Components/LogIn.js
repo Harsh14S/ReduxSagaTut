@@ -6,6 +6,7 @@ import Colors from '../Common/Colors'
 import { useDispatch, useSelector } from 'react-redux'
 import { LoginAction } from '../Redux/Actions/LoginAction'
 import DeviceInfo from 'react-native-device-info'
+import { CommonStyles } from '../Common/Style'
 // import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
 
 export default LogIn = ({ navigation }) => {
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: RFPercentage(7),
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   title: {
     color: Colors.white,

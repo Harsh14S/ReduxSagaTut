@@ -2,6 +2,7 @@ export const ImageLinks = {
   Wardrobe: require('../Common/Images/Wardrobe.jpeg'),
   EmptyCart: { uri: 'https://www.99fashionbrands.com/wp-content/uploads/2020/12/empty_cart.png' },
   UserImage: { uri: 'https://reqres.in/img/faces/1-image.jpg' },
+  MusicBackground: require('../Common/Images/BackImage1.jpeg'),
 }
 
 export const IconUri = {
@@ -17,6 +18,19 @@ export const IconUri = {
   HomeIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/1946/1946436.png' },
   ProfileIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/64/64572.png' },
   SettingIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3524/3524659.png' },
-  CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2956/2956744.png' },
+  MediaIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4211/4211344.png' },
+  AudioIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/876/876817.png' },
+  MusicPlayerIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/651/651717.png' },
+  VideoIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/92/92353.png' },
+  CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/482/482399.png' },
+  CameraFilledIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/482/482887.png' },
+  PlayIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4211/4211344.png' },
+  PauseIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2920/2920686.png' },
+  StopIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4029/4029077.png' },
+};
 
+export const VideoLink = {
+  ExternalVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+  InternalVideo1: require('../Common/Video/sky03.mp4'),
+  InternalVideo2: require('../Common/Video/nature01.mp4')
 }

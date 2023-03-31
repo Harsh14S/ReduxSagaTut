@@ -1,9 +1,10 @@
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
 import Colors from '../Common/Colors'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
+import { CommonStyles } from '../Common/Style'
 
 export default LoginDetails = ({ route, navigation }) => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   heading: {
     fontSize: RFPercentage(4),
