@@ -21,6 +21,7 @@ import MediaDrawerComponent from './MediaDrawerComponent';
 import Video from './Media/Video';
 import MusicPlayer from './Media/MusicPlayer';
 import VideoPlayer from './Media/VideoPlayer';
+import Location from './Media/Location';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -84,6 +85,7 @@ const MediaDrawerNav = ({ route }) => {
       }}
     >
       <Drawer.Screen name="Audio" component={Audio} />
+      <Drawer.Screen name="Location" component={Location} />
       <Drawer.Screen name="Video" component={Video} />
       <Drawer.Screen name="Camera" component={Camera} />
     </Drawer.Navigator>

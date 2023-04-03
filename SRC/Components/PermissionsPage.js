@@ -40,17 +40,9 @@ export default PermissionsPage = ({ navigation }) => {
         }}>
         <Text style={styles.permissionBtnTxt}>Contacts</Text>
       </Pressable>
-
-      <Pressable
-        style={styles.permissionBtn}
-        onPress={() => navigation.navigate('Camera')}>
-        <Text style={styles.permissionBtnTxt}>Open Camera</Text>
-      </Pressable>
     </View>
   )
 }
-
-
 
 const styles = StyleSheet.create({
   container: {

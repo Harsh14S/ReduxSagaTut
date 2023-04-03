@@ -12,6 +12,8 @@
 	<string>microphone accessed </string>
 	<key>NSContactsUsageDescription</key>
   <string>Contact access</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location Access</string>
 
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

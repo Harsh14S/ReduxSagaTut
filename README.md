@@ -51,8 +51,10 @@ see the npm librariy react-native-permissions
 
 # Camera access check npm library for further procedures
 
-npm i react-native-camera
-npm i react-native-camera-hooks
+npm i react-native-camera-kit
+
+<!-- npm i react-native-camera  N/W -->
+<!-- npm i react-native-camera-hooks N/W -->
 
 # native fileSystem access
 
@@ -65,3 +67,4 @@ npm i react-native-sound
 # react-native video
 
 npm i react-native-video
+npm i react-native-video-player

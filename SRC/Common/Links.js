@@ -27,6 +27,11 @@ export const IconUri = {
   PlayIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4211/4211344.png' },
   PauseIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2920/2920686.png' },
   StopIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4029/4029077.png' },
+  FlashAutoIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3601/3601253.png' },
+  FlashOnIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/1829/1829261.png' },
+  FlashOffIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3596/3596171.png' },
+  CameraFlipIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/1829/1829480.png' },
+  LocationIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3179/3179068.png' },
 };
 
 export const VideoLink = {

@@ -40,6 +40,10 @@ export default MediaDrawerComponent = ({ route, navigation }) => {
           <Image style={styles.screenLogo} source={IconUri.CameraFilledIcon} />
           <Text style={styles.screenName}>Camera</Text>
         </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer]} onPress={() => navigation.navigate('Location')}>
+          <Image style={styles.screenLogo} source={IconUri.LocationIcon} />
+          <Text style={styles.screenName}>Location</Text>
+        </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer]} onPress={() => navigation.navigate('Home')}>
           <Image style={styles.screenLogo} source={IconUri.HomeIcon} />
           <Text style={styles.screenName}>Home</Text>
