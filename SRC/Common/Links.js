@@ -6,7 +6,8 @@ export const ImageLinks = {
 }
 
 export const IconUri = {
-  SearchIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2330/2330104.png' },
+  SearchIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/54/54481.png' },
+  CloseIcon: { uri: 'https://cdn-icons-png.flaticon.com/128/3416/3416079.png' },
   MicrophoneIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2989/2989873.png' },
   CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/685/685655.png' },
   CrossIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2961/2961937.png' },
@@ -22,7 +23,7 @@ export const IconUri = {
   AudioIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/876/876817.png' },
   MusicPlayerIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/651/651717.png' },
   VideoIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/92/92353.png' },
-  CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/482/482399.png' },
+  CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/685/685655.png' },
   CameraFilledIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/482/482887.png' },
   PlayIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/4211/4211344.png' },
   PauseIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2920/2920686.png' },
