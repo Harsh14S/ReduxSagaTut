@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, FlatList, Image, Pressable, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../Redux/Actions/Action';
@@ -7,8 +7,10 @@ import HomeHeader from './HomeHeader';
 import { GetProductAction } from '../Redux/Actions/GetProductAction';
 import Colors from '../Common/Colors';
 import { IconUri } from '../Common/Links';
+import DeviceInfo from 'react-native-device-info';
+import { CommonStyles } from '../Common/Style';
 
-const Home = ({ navigation }) => {
+export default Home = ({ navigation }) => {
   const [data, setData] = useState('');
   const dispatch = useDispatch();
   const getProductData = useSelector((state) => state.GetProduct);
@@ -23,7 +25,7 @@ const Home = ({ navigation }) => {
     // console.log('product', Product);
   }, [getProductData])  // dependency is compulsory so that data is rendered properly after getting on this page (getProductData)
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar barStyle={'dark-content'} />
       <HomeHeader navigation={navigation} />
       <Pressable style={styles.searchBar} onPress={() => navigation.navigate('SearchProduct')}>
@@ -68,17 +70,18 @@ const Home = ({ navigation }) => {
           </View>
         )}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
-export default Home
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Dimensions.get('screen').width,
     backgroundColor: Colors.white,
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   searchBar: {
     backgroundColor: Colors.midnightBlue_80,

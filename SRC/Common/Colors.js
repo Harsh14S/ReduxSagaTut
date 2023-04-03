@@ -1,5 +1,7 @@
 export default Colors = {
+  transparent: 'transparent',
   white: 'rgb(255, 255, 255)',
+  black: 'rgb(0, 0, 0)',
   black_94: 'rgb(21, 21, 21)',
   midnightBlue_80: 'rgb(48, 27, 63)',
   arsenic_88: 'rgb(60, 65, 92)',

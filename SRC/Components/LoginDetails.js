@@ -1,18 +1,27 @@
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import Colors from '../Common/Colors'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import { GetUserProfileAction } from '../Redux/Actions/GetUserProfileAction'
+import { CommonStyles } from '../Common/Style'
 
 export default LoginDetails = ({ route, navigation }) => {
-  const LoginData = useSelector(state => state.LogIn);
-  const SignupData = useSelector(state => state.SignUp);
-  // console.log("Route: ", route);
+  const dispatch = useDispatch();
+
+
+  // console.log("Email: ", route.params.email);
+
   useEffect(() => {
+    dispatch(GetUserProfileAction(route.params.email))
     setTimeout(() => {
-      navigation.navigate('DrawerNav')
+      navigation.navigate('DrawerNav', {
+        userEmail: route.params.email
+      })
     }, 1000)
   }, [])
+
+
 
   return (
     <View style={styles.container}>
@@ -23,6 +32,7 @@ export default LoginDetails = ({ route, navigation }) => {
         <Text style={styles.titleTxt}>Email</Text>
         <Text style={styles.txt}>{route.params.email}</Text>
       </View>
+
       <View style={styles.detailsContainer}>
         <Text style={styles.titleTxt}>Password</Text>
         <Text style={styles.txt}>{route.params.password}</Text>
@@ -38,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   heading: {
     fontSize: RFPercentage(4),

@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
 import Colors from '../Common/Colors'
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { GetSearchProductAction } from '../Redux/Actions/GetSearchProductAction'
 import { addToCart, removeFromCart } from '../Redux/Actions/Action'
+import { CommonStyles } from '../Common/Style'
 
 export default SearchPage = ({ navigation }) => {
   const [data, setData] = useState('');
@@ -17,7 +18,7 @@ export default SearchPage = ({ navigation }) => {
   // setData(SearchProduct)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* <ScrollView> */}
       <SearchBar navigation={navigation} />
       <FlatList
@@ -59,7 +60,7 @@ export default SearchPage = ({ navigation }) => {
         )}
       />
       {/* </ScrollView> */}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
+    paddingTop: CommonStyles.paddingTop.paddingTop,
   },
   btnContainers: {
     flexWrap: 'wrap',

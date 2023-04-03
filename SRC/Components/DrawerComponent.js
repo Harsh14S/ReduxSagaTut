@@ -1,33 +1,41 @@
-import { Image, Platform, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../Common/Colors'
-import { IconUri, ImageLinks } from '../Common/Links'
-import DeviceInfo from 'react-native-device-info'
+import { IconUri } from '../Common/Links'
 import { useSelector } from 'react-redux'
 
-export default DrawerComponent = ({ navigation }) => {
-  // console.log("Has Notch: ", DeviceInfo.hasNotch());
-  const UserProfileData = useSelector(state => state.GetUserProfile);
-  console.log("UserProfileData: ", UserProfileData.data[0].data[1].avatar);
-  const ProfileImg = UserProfileData.data[0].data[1].avatar;
+export default DrawerComponent = ({ route, navigation }) => {
+
+  const UserProfile = useSelector(state => state.GetUserProfile);
+  const UserProfileData = UserProfile.data;
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <View style={styles.headerSection}>
         <TouchableOpacity activeOpacity={0.5} style={styles.userProfileBtn}>
-          <Image style={styles.userProfileImg} source={{ uri: `${ProfileImg}` } || IconUri.ProfileIcon} />
+          {/* <Image style={styles.userProfileImg} source={{ uri: `${ProfileImg}` } || IconUri.ProfileIcon} /> */}
+          <Image style={styles.userProfileImg} source={{ uri: UserProfileData.avatar } || IconUri.ProfileIcon} />
         </TouchableOpacity>
         <View style={styles.userNameContainer}>
-          <Text style={styles.userName}>George Bluth</Text>
-          <Text style={styles.userEmail}>george.bluth@reqres.in</Text>
+          <Text style={styles.userName}>{UserProfileData.first_name} {UserProfileData.last_name}</Text>
+          <Text style={styles.userEmail}>{UserProfileData.email}</Text>
         </View>
       </View>
 
       <View style={styles.bodySection}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity activeOpacity={0.5} style={[styles.screenNavContainer]} onPress={() => navigation.navigate('Home')}>
           <Image style={styles.screenLogo} source={IconUri.HomeIcon} />
           <Text style={styles.screenName}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('SearchProduct')}>
+          <Image style={styles.screenLogo} source={IconUri.SearchIcon} />
+          <Text style={styles.screenName}>Search Product</Text>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('MediaDrawerNav')}>
+          <Image style={styles.screenLogo} source={IconUri.MediaIcon} />
+          <Text style={styles.screenName}>Media</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Cart')}>
           <Image style={styles.screenLogo} source={IconUri.CartFilledIcon} />
@@ -37,10 +45,14 @@ export default DrawerComponent = ({ navigation }) => {
           <Image style={styles.screenLogo} source={IconUri.ProfileIcon} />
           <Text style={styles.screenName}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Settings')}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('PermissionsPage')}>
+          <Image style={styles.screenLogo} source={IconUri.SettingIcon} />
+          <Text style={styles.screenName}>Permissions</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Settings')}>
           <Image style={styles.screenLogo} source={IconUri.SettingIcon} />
           <Text style={styles.screenName}>Settings</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   )
@@ -65,6 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: RFPercentage(100),
     overflow: 'hidden'
   },
+  activeBtnColor: { backgroundColor: Colors.grey },
   userProfileImg: {
     height: RFPercentage(15),
     width: RFPercentage(15),

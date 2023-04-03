@@ -1,4 +1,4 @@
-import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Image, Pressable, StyleSheet, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,7 +8,7 @@ import { GetSearchProductAction } from '../Redux/Actions/GetSearchProductAction'
 
 export default SearchBar = ({ navigation }) => {
   const SearchProduct = useSelector(state => state.GetSearchProduct)
-  console.log("SearchProduct: ", SearchProduct.data);
+  // console.log("SearchProduct: ", SearchProduct.data);
   const [textActive, setTextActive] = useState(false);
   const dispatch = useDispatch();
   const [searchTxt, setSearchTxt] = useState('');
@@ -22,7 +22,7 @@ export default SearchBar = ({ navigation }) => {
           </Pressable>)
         }
         {
-          textActive ? (<Pressable onPress={() => navigation.goBack()}>
+          textActive ? (<Pressable onPress={() => navigation.navigate('Home')}>
             <Image style={styles.searchBarIcons} source={IconUri.LeftArrowIcon} resizeMode={'contain'} />
           </Pressable>) : null
         }
