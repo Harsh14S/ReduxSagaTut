@@ -12,7 +12,7 @@ export default CartHeader = ({ navigation }) => {
     <View style={styles.container}>
       <Pressable
         style={styles.left}
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate('Home')}
       >
         <Image source={IconUri.LeftArrowIcon} style={styles.leftIcon} resizeMode={'contain'} />
       </Pressable>
