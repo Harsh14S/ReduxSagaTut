@@ -105,17 +105,23 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(8),
     fontWeight: '600',
     marginBottom: RFPercentage(4),
+    marginTop: RFPercentage(2),
   },
   loginContainer: {
     flex: 1,
     width: Dimensions.get('screen').width,
     borderTopLeftRadius: RFPercentage(10),
     backgroundColor: Colors.white,
-    paddingTop: RFPercentage(11),
+    paddingTop: RFPercentage(6),
     paddingBottom: DeviceInfo.hasNotch() ? RFPercentage(3.5) : RFPercentage(1),
     alignItems: 'center',
     paddingHorizontal: RFPercentage(4),
     // backgroundColor: Colors.lightGrey,
+  },
+  detailsContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
   },
   welcomeTitle: {
     fontSize: RFPercentage(4.5),
@@ -128,11 +134,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.grey,
     marginBottom: RFPercentage(3.5)
-  },
-  detailsContainer: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
   },
   inputContainer: {
     // backgroundColor: Colors.silver_90_66,

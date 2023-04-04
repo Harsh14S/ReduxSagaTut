@@ -10,4 +10,6 @@ export default Colors = {
   silver_90_66: 'rgb(180, 165, 165, 20)',
   grey: 'grey',
   lightGrey: 'lightgrey',
+  blue: 'blue',
+  red: 'red',
 };

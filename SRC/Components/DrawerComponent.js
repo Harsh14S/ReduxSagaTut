@@ -41,9 +41,9 @@ export default DrawerComponent = ({ route, navigation }) => {
           <Image style={styles.screenLogo} source={IconUri.CartFilledIcon} />
           <Text style={styles.screenName}>Cart</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('Profile')}>
-          <Image style={styles.screenLogo} source={IconUri.ProfileIcon} />
-          <Text style={styles.screenName}>Profile</Text>
+        <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('UserFeedback')}>
+          <Image style={styles.screenLogo} source={IconUri.FeedbackIcon} />
+          <Text style={styles.screenName}>Feedback</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} style={styles.screenNavContainer} onPress={() => navigation.navigate('PermissionsPage')}>
           <Image style={styles.screenLogo} source={IconUri.SettingIcon} />

@@ -22,6 +22,8 @@ import Video from './Media/Video';
 import MusicPlayer from './Media/MusicPlayer';
 import VideoPlayer from './Media/VideoPlayer';
 import Location from './Media/Location';
+import UserFeedback from './UserFeedback';
+import Registration from './Registration';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -38,10 +40,11 @@ export default Nav = () => {
     >
       <Stack.Screen name="LogInSignUp" component={LogInSignUp} />
       <Stack.Screen name="LogIn" component={LogIn} />
-      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="SignUp" component={Registration} />
       <Stack.Screen name="LoginDetails" component={LoginDetails} />
       <Stack.Screen name="DrawerNav" component={DrawerNav} />
       <Stack.Screen name="MediaDrawerNav" component={MediaDrawerNav} />
+      <Stack.Screen name="UserFeedback" component={UserFeedback} />
       <Stack.Screen name="MusicPlayer" component={MusicPlayer} />
       <Stack.Screen name="VideoPlayer" component={VideoPlayer} />
     </Stack.Navigator>

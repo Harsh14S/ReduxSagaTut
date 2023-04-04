@@ -7,6 +7,9 @@ export const ImageLinks = {
 
 export const IconUri = {
   SearchIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/54/54481.png' },
+  FeedbackIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/813/813388.png' },
+  QuerryIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3106/3106703.png' },
+  QuerryFilledIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/471/471715.png' },
   CloseIcon: { uri: 'https://cdn-icons-png.flaticon.com/128/3416/3416079.png' },
   MicrophoneIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2989/2989873.png' },
   CameraIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/685/685655.png' },
@@ -33,6 +36,14 @@ export const IconUri = {
   FlashOffIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3596/3596171.png' },
   CameraFlipIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/1829/1829480.png' },
   LocationIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/3179/3179068.png' },
+  MailIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2099/2099100.png' },
+  MailFilledIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2099/2099199.png' },
+  LockIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2889/2889676.png' },
+  LockFilledIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2886/2886699.png' },
+  EyeIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/709/709612.png' },
+  EyeHideIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2767/2767146.png' },
+  PhoneIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/159/159832.png' },
+  NameIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/9187/9187475.png' },
 };
 
 export const VideoLink = {

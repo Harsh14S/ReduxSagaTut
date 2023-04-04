@@ -43,7 +43,7 @@ export default SignUp = ({ navigation }) => {
   }
   return (
     <ImageBackground source={ImageLinks.Wardrobe} style={styles.container}>
-      <Text style={styles.title}>SignUp</Text>
+      <Text style={styles.title}>Register</Text>
       <View style={styles.loginContainer}>
         <View style={styles.detailsContainer}>
           <Text style={styles.welcomeTitle}>Welcome</Text>
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(8),
     fontWeight: '600',
     marginBottom: RFPercentage(4),
+    marginTop: RFPercentage(2),
   },
   loginContainer: {
     flex: 1,
