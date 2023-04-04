@@ -8,6 +8,7 @@ import { GetProductAction } from '../Redux/Actions/GetProductAction';
 import Colors from '../Common/Colors';
 import { IconUri } from '../Common/Links';
 import { CommonStyles } from '../Common/Style';
+import DeviceInfo from 'react-native-device-info';
 
 
 export default Home = ({ navigation }) => {
@@ -40,6 +41,7 @@ export default Home = ({ navigation }) => {
         <Image style={styles.searchBarIcons} source={IconUri.CameraIcon} resizeMode={'contain'} />
       </Pressable>
       <FlatList
+        style={{ marginTop: RFPercentage(1), marginBottom: DeviceInfo.hasNotch() ? RFPercentage(2.6) : null }}
         data={data}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
@@ -133,7 +135,7 @@ export default Home = ({ navigation }) => {
           </View>
         </Modal>
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
           visible={preview}
           onRequestClose={() => {
@@ -141,13 +143,19 @@ export default Home = ({ navigation }) => {
             setPreview(!preview);
           }}>
           <View style={modalStyles.centeredView}>
-            <View style={{ backgroundColor: Colors.midnightBlue_80, borderRadius: RFPercentage(2), }}>
-              <Pressable><Image style={{ height: RFPercentage(3), width: RFPercentage(3), tintColor: Colors.white }} source={IconUri.CloseIcon} /></Pressable>
-              <Image
-                source={{ uri: imagePreview }}
-                style={{ height: RFPercentage(40), width: RFPercentage(40), margin: RFPercentage(2) }}
-                resizeMode={'contain'}
-              />
+            <View style={{ backgroundColor: Colors.midnightBlue_80, borderRadius: RFPercentage(2), alignItems: 'flex-end' }}>
+              <Pressable
+                style={{ position: 'absolute', marginTop: RFPercentage(1), right: RFPercentage(1) }}
+                onPress={() => setPreview(!preview)}>
+                <Image style={{ height: RFPercentage(3.5), width: RFPercentage(3.5), tintColor: Colors.white }} source={IconUri.CloseIcon} />
+              </Pressable>
+              <View style={{ backgroundColor: Colors.white, borderRadius: RFPercentage(0.8), alignItems: 'flex-end', marginTop: RFPercentage(6), marginHorizontal: RFPercentage(3), marginBottom: RFPercentage(3) }}>
+                <Image
+                  source={{ uri: imagePreview }}
+                  style={{ height: RFPercentage(36), width: RFPercentage(36) }}
+                  resizeMode={'contain'}
+                />
+              </View>
             </View>
           </View>
         </Modal>
@@ -183,7 +191,6 @@ const modalStyles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    // marginTop: RFPercentage(1),
   },
   modalBtn: {
     flex: 1,
@@ -212,7 +219,7 @@ const modalStyles = StyleSheet.create({
   modalThumbnail: {
     margin: RFPercentage(1),
     height: RFPercentage(18),
-    width: RFPercentage(15),
+    width: RFPercentage(18),
   },
   modalDetailsContainer: {
     flex: 1,
