@@ -44,6 +44,7 @@ export const IconUri = {
   EyeHideIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/2767/2767146.png' },
   PhoneIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/159/159832.png' },
   NameIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/9187/9187475.png' },
+  CircleIcon: { uri: 'https://cdn-icons-png.flaticon.com/512/808/808569.png' },
 };
 
 export const VideoLink = {

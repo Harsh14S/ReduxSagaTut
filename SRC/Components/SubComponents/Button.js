@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import Colors from '../../Common/Colors'
 
-export default Button = ({ title, onPress = () => { } }) => {
+export default Button = ({ title, onPress = () => { }, btnStyle, titleStyle }) => {
   return (
-    <TouchableOpacity style={styles.btn} onPress={onPress} >
-      <Text style={styles.btnText}>{title}</Text>
+    <TouchableOpacity style={[styles.btn, btnStyle]} onPress={onPress} >
+      <Text style={[styles.btnText, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   )
 }

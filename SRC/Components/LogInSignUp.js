@@ -5,6 +5,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { ImageLinks } from '../Common/Links'
 import { useDispatch } from 'react-redux'
 import { CommonStyles } from '../Common/Style'
+import Button from './SubComponents/Button'
 
 export default LogInSignUp = ({ navigation }) => {
   const [signstyle, setsignStyle] = useState();
@@ -17,22 +18,8 @@ export default LogInSignUp = ({ navigation }) => {
     <ImageBackground source={ImageLinks.Wardrobe} style={styles.container}>
       <View style={styles.subContainer}>
         <Text style={styles.heading}>Let's start Shopping</Text>
-        <Pressable
-          style={[styles.signUpBtn, signstyle]}
-          onPress={() => navigation.navigate('SignUp')}
-          onPressIn={() => setsignStyle(styles.opacity)}
-          onPressOut={() => setsignStyle(null)}
-        >
-          <Text style={styles.signUpTxt}>Signup</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.logInBtn, logstyle]}
-          onPress={() => navigation.navigate('LogIn')}
-          onPressIn={() => setLogStyle(styles.opacity)}
-          onPressOut={() => setLogStyle(null)}
-        >
-          <Text style={styles.logInTxt}>Login</Text>
-        </Pressable>
+        <Button title='Register' btnStyle={styles.signUpBtn} titleStyle={styles.signUpTxt} onPress={() => navigation.navigate('Registration')} />
+        <Button title='Login' btnStyle={styles.logInBtn} titleStyle={styles.logInTxt} onPress={() => navigation.navigate('LogIn')} />
       </View>
     </ImageBackground>
   )
@@ -48,43 +35,30 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
     marginHorizontal: RFPercentage(4),
-    // justifyContent: 'center',
-    // backgroundColor: Colors.arsenic_88,
     paddingTop: RFPercentage(15),
   },
   heading: {
-    // backgroundColor: Colors.arsenic_88,
     fontSize: RFPercentage(9),
     color: Colors.white,
     marginBottom: RFPercentage(5),
   },
   signUpBtn: {
-    alignItems: 'center',
     backgroundColor: Colors.white,
     borderRadius: RFPercentage(100),
-    paddingVertical: RFPercentage(1.5),
     marginBottom: RFPercentage(2),
-    opacity: 1,
+    height: RFPercentage(7),
   },
   logInBtn: {
-    alignItems: 'center',
     backgroundColor: Colors.midnightBlue_80,
     borderRadius: RFPercentage(100),
-    paddingVertical: RFPercentage(1.5),
-    // marginBottom: RFPercentage(2),
-    opacity: 1,
+    marginBottom: RFPercentage(2),
+    height: RFPercentage(7),
   },
   signUpTxt: {
     color: Colors.midnightBlue_80,
-    fontSize: RFPercentage(2.7),
-    fontWeight: '700',
+    // fontFamily: 'Montserrat-Regular'
   },
   logInTxt: {
     color: Colors.white,
-    fontSize: RFPercentage(2.7),
-    fontWeight: '700',
   },
-  opacity: {
-    opacity: 0.7,
-  }
 })

@@ -24,6 +24,7 @@ import VideoPlayer from './Media/VideoPlayer';
 import Location from './Media/Location';
 import UserFeedback from './UserFeedback';
 import Registration from './Registration';
+import SplashScreen from './SplashScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -32,15 +33,16 @@ export default Nav = () => {
   return (
     <Stack.Navigator
       // initialRouteName='Home'
-      initialRouteName='LogInSignUp'
+      initialRouteName='SplashScreen'
       // initialRouteName='PermissionsPage'
       screenOptions={{
         headerShown: false,
       }}
     >
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="LogInSignUp" component={LogInSignUp} />
       <Stack.Screen name="LogIn" component={LogIn} />
-      <Stack.Screen name="SignUp" component={Registration} />
+      <Stack.Screen name="Registration" component={Registration} />
       <Stack.Screen name="LoginDetails" component={LoginDetails} />
       <Stack.Screen name="DrawerNav" component={DrawerNav} />
       <Stack.Screen name="MediaDrawerNav" component={MediaDrawerNav} />

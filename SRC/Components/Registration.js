@@ -39,7 +39,7 @@ export default Registration = ({ navigation }) => {
   const validate = () => {
     Keyboard.dismiss();
     let isValid = true;
-
+    // ^\\d{10}$
     if (!inputs.email) {
       handleError('Please enter your email', 'email');
       isValid = false;
@@ -55,6 +55,9 @@ export default Registration = ({ navigation }) => {
 
     if (!inputs.phone) {
       handleError('Please enter your phone number', 'phone');
+      isValid = false;
+    } else if (!inputs.phone.match(/^[0]?[6789]\d{9}$/)) {
+      handleError('Please enter valid phone number', 'phone');
       isValid = false;
     }
 
@@ -93,7 +96,7 @@ export default Registration = ({ navigation }) => {
       } catch (error) {
         Alert.alert('Error', 'Something Went Wrong!!!')
       }
-    }, 1000)
+    }, 1000);
   }
   const handleOnChange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }))
@@ -111,91 +114,87 @@ export default Registration = ({ navigation }) => {
           <Text style={styles.welcomeTitle}>Welcome</Text>
           <Text style={styles.subWelcomeTitle}>Enter your details here</Text>
         </View>
-        <KeyboardAvoidingView style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : null}
-        >
-          <ScrollView style={styles.inputContainer} showsVerticalScrollIndicator={false}>
-            <Input
-              label='Email'
-              iconName={IconUri.MailIcon}
-              placeholder="Enter Your email address"
-              value={inputs.email}
-              onChangeText={(text) => {
-                handleOnChange(text, "email");
-                setEmail(text);
-              }}
-              error={errors.email}
-              // error="Enter Your email address "
-              onFocus={() => {
-                handleError(null, "email")
-              }}
-            />
-            <Input
-              label='Fullname'
-              iconName={IconUri.NameIcon}
-              placeholder="Enter Your Full Name"
-              value={inputs.fullname}
-              onChangeText={(text) => {
-                handleOnChange(text, "fullname");
-                setFullname(text);
-              }}
-              error={errors.fullname}
-              onFocus={() => {
-                handleError(null, "fullname")
-              }}
-            />
-            <Input
-              label='Phone Number'
-              iconName={IconUri.PhoneIcon}
-              placeholder="Enter Your phone number"
-              value={inputs.phone}
-              keyboardType="numeric"
-              onChangeText={(text) => {
-                handleOnChange(text, "phone");
-                setPhone(text);
-              }}
-              error={errors.phone}
-              onFocus={() => {
-                handleError(null, "phone")
-              }}
-            />
-            <Input
-              label='Password'
-              iconName={IconUri.LockIcon}
-              placeholder="Enter Your Password"
-              value={inputs.password}
-              onChangeText={(text) => {
-                handleOnChange(text, "password");
-                setPassword(text);
-              }}
-              error={errors.password}
-              onFocus={() => {
-                handleError(null, "password")
-              }}
-              password
-            />
-            <Input
-              label='Confirm Password'
-              iconName={IconUri.LockIcon}
-              placeholder="Re-Enter Your Password"
-              value={inputs.repassword}
-              onChangeText={(text) => {
-                handleOnChange(text, "repassword");
-                setRepassword(text);
-              }}
-              error={errors.repassword}
-              onFocus={() => {
-                handleError(null, "repassword")
-              }}
-              password
-            />
-            {/* <Button title='Register' onPress={validate} /> */}
-          </ScrollView>
-          <View style={{ marginTop: RFPercentage(2), marginBottom: RFPercentage(0.6) }}>
-            <Button title='Register' onPress={() => validate()} />
-          </View>
-          <Text style={styles.noAccountText}>Already have an account? <Text style={styles.signupTxt} onPress={() => navigation.navigate('LogIn')}>Login</Text></Text>
-        </KeyboardAvoidingView>
+        <ScrollView style={styles.inputContainer} showsVerticalScrollIndicator={false}>
+          <Input
+            label='Email'
+            iconName={IconUri.MailIcon}
+            placeholder="Enter Your email address"
+            value={inputs.email}
+            onChangeText={(text) => {
+              handleOnChange(text, "email");
+              setEmail(text);
+            }}
+            error={errors.email}
+            // error="Enter Your email address "
+            onFocus={() => {
+              handleError(null, "email")
+            }}
+          />
+          <Input
+            label='Fullname'
+            iconName={IconUri.NameIcon}
+            placeholder="Enter Your Full Name"
+            value={inputs.fullname}
+            onChangeText={(text) => {
+              handleOnChange(text, "fullname");
+              setFullname(text);
+            }}
+            error={errors.fullname}
+            onFocus={() => {
+              handleError(null, "fullname")
+            }}
+          />
+          <Input
+            label='Phone Number'
+            iconName={IconUri.PhoneIcon}
+            placeholder="Enter Your phone number"
+            value={inputs.phone}
+            keyboardType="numeric"
+            onChangeText={(text) => {
+              handleOnChange(text, "phone");
+              setPhone(text);
+            }}
+            error={errors.phone}
+            onFocus={() => {
+              handleError(null, "phone")
+            }}
+          />
+          <Input
+            label='Password'
+            iconName={IconUri.LockIcon}
+            placeholder="Enter Your Password"
+            value={inputs.password}
+            onChangeText={(text) => {
+              handleOnChange(text, "password");
+              setPassword(text);
+            }}
+            error={errors.password}
+            onFocus={() => {
+              handleError(null, "password")
+            }}
+            password
+          />
+          <Input
+            label='Confirm Password'
+            iconName={IconUri.LockIcon}
+            placeholder="Re-Enter Your Password"
+            value={inputs.repassword}
+            onChangeText={(text) => {
+              handleOnChange(text, "repassword");
+              setRepassword(text);
+            }}
+            error={errors.repassword}
+            onFocus={() => {
+              handleError(null, "repassword")
+            }}
+            password
+          />
+          {/* <Button title='Register' onPress={validate} /> */}
+        </ScrollView>
+        <View style={{ marginTop: RFPercentage(2), marginBottom: RFPercentage(0.6) }}>
+          <Button title='Register' onPress={() => validate()} />
+        </View>
+        <Text style={styles.noAccountText}>Already have an account? <Text style={styles.signupTxt} onPress={() => navigation.navigate('LogIn')}>Login</Text></Text>
       </View>
     </ImageBackground>
   )
@@ -219,8 +218,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('screen').width,
     borderTopLeftRadius: RFPercentage(10),
     backgroundColor: Colors.white,
-    paddingTop: RFPercentage(4),
-    paddingBottom: DeviceInfo.hasNotch() ? RFPercentage(3.5) : RFPercentage(0.1),
+    paddingTop: RFPercentage(8),
+    paddingBottom: DeviceInfo.hasNotch() ? RFPercentage(3.5) : RFPercentage(1),
     paddingHorizontal: RFPercentage(4),
     // backgroundColor: Colors.grey,
   },
@@ -261,7 +260,8 @@ const styles = StyleSheet.create({
   },
   noAccountText: {
     color: Colors.grey,
-    textAlign: 'center'
+    textAlign: 'center',
+    // marginBottom: RFPercentage(2),
   },
   signupTxt: {
     fontWeight: '700',

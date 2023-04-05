@@ -18,7 +18,6 @@ const Input = ({
     <View style={styles.container}>
       <Text style={styles.labelTxt}>{label}</Text>
       <View style={[styles.inputContainer, { borderColor: error ? Colors.red : isFocused ? Colors.midnightBlue_80 : Colors.lightGrey }]}>
-        {/* <View> */}
         <Image style={styles.iconImage} source={iconName} />
         <TextInput
           secureTextEntry={hidePassword}
@@ -75,12 +74,12 @@ const styles = StyleSheet.create({
   inputBox: {
     flex: 1,
     color: Colors.midnightBlue_80,
-    fontSize: RFPercentage(1.8)
+    fontSize: RFPercentage(1.8),
+    fontWeight: '500',
   },
   errorText: {
     color: Colors.red,
     fontSize: RFPercentage(1.5),
     marginTop: RFPercentage(1)
   }
-
 })

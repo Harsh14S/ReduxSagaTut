@@ -5,6 +5,8 @@ import Store from './SRC/Redux/Store'
 import Nav from './SRC/Components/Nav'
 import { NavigationContainer } from '@react-navigation/native'
 import Colors from './SRC/Common/Colors'
+// import 'react-native-reanimated'
+// import 'react-native-gesture-handler'
 
 
 const App = () => {

@@ -9,13 +9,14 @@ import Colors from '../Common/Colors';
 import { IconUri } from '../Common/Links';
 import { CommonStyles } from '../Common/Style';
 import DeviceInfo from 'react-native-device-info';
+import Button from './SubComponents/Button';
 
 
 export default Home = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [removeItem, setRemoveItem] = useState({});
   const [preview, setPreview] = useState(false);
-  const [imagePreview, setImagePreview] = useState('');
+  const [imagePreview, setImagePreview] = useState({});
 
   const [data, setData] = useState('');
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export default Home = ({ navigation }) => {
                 <Text style={styles.headingTxt}>Description: <Text style={styles.txt}>{item.description}</Text></Text>
               </View>
               <Pressable style={styles.thumbnailContainer} onPress={() => {
-                setImagePreview(item.thumbnail);
+                setImagePreview({ productImg: item.thumbnail, productName: item.title });
                 setPreview(!preview)
               }}>
                 <Image
@@ -66,13 +67,9 @@ export default Home = ({ navigation }) => {
               </Pressable>
             </View>
             <View style={styles.btnContainers}>
-              <Pressable
-                style={[styles.btn, { marginRight: RFPercentage(1) }]}
-                onPress={() => dispatch(addToCart(item))}
-              >
-                <Text style={styles.btnTxt}>Add To Cart</Text>
-              </Pressable>
-              <Pressable
+              <Button title="Add To Cart" btnStyle={styles.btn} titleStyle={styles.btnTxt} onPress={() => dispatch(addToCart(item))} />
+              <Button title="Remove From Cart" btnStyle={styles.btn} titleStyle={styles.btnTxt} onPress={() => dispatch(addToCart(item))} />
+              {/* <Pressable
                 style={[styles.btn, { marginLeft: RFPercentage(1) }]}
                 onPress={() => {
                   setModalVisible(!modalVisible);
@@ -80,7 +77,7 @@ export default Home = ({ navigation }) => {
                 }}
               >
                 <Text style={styles.btnTxt}>Remove From Cart</Text>
-              </Pressable>
+              </Pressable> */}
             </View>
           </View>
         )}
@@ -143,19 +140,20 @@ export default Home = ({ navigation }) => {
             setPreview(!preview);
           }}>
           <View style={modalStyles.centeredView}>
-            <View style={{ backgroundColor: Colors.midnightBlue_80, borderRadius: RFPercentage(2), alignItems: 'flex-end' }}>
+            <View style={{ backgroundColor: Colors.midnightBlue_80, borderRadius: RFPercentage(2), alignItems: 'center', }}>
               <Pressable
                 style={{ position: 'absolute', marginTop: RFPercentage(1), right: RFPercentage(1) }}
                 onPress={() => setPreview(!preview)}>
                 <Image style={{ height: RFPercentage(3.5), width: RFPercentage(3.5), tintColor: Colors.white }} source={IconUri.CloseIcon} />
               </Pressable>
-              <View style={{ backgroundColor: Colors.white, borderRadius: RFPercentage(0.8), alignItems: 'flex-end', marginTop: RFPercentage(6), marginHorizontal: RFPercentage(3), marginBottom: RFPercentage(3) }}>
+              <View style={{ backgroundColor: Colors.white, borderRadius: RFPercentage(0.8), alignItems: 'flex-end', marginTop: RFPercentage(6), marginHorizontal: RFPercentage(3), marginBottom: RFPercentage(1) }}>
                 <Image
-                  source={{ uri: imagePreview }}
+                  source={{ uri: imagePreview.productImg }}
                   style={{ height: RFPercentage(36), width: RFPercentage(36) }}
                   resizeMode={'contain'}
                 />
               </View>
+              <Text style={{ fontSize: RFPercentage(2.5), color: Colors.white, fontWeight: '600', marginBottom: RFPercentage(1) }}>{imagePreview.productName}</Text>
             </View>
           </View>
         </Modal>
@@ -275,16 +273,13 @@ const styles = StyleSheet.create({
   btnContainers: {
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     marginTop: RFPercentage(1),
   },
   btn: {
-    flex: 1,
-    backgroundColor: Colors.midnightBlue_80,
-    // marginHorizontal: RFPercentage(2),
-    paddingVertical: RFPercentage(1.5),
-    borderRadius: RFPercentage(1.5),
-    alignItems: 'center',
+    // flex: 1,
+    width: '49%',
+    borderRadius: RFPercentage(1.8),
   },
   btnTxt: {
     fontSize: RFPercentage(1.6),
